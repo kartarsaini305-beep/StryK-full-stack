@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join as Client — StryK</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="register.css">
+<link rel="stylesheet" href="register-client.css">
+</head>
+<body>
+<script src="preloader.js"></script>
+
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+</nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span></div></div>
+
+<main class="page-body client-reg-page">
+
+  <div class="client-reg-layout">
+
+    <!-- LEFT: Value Panel -->
+    <aside class="client-value-panel">
+      <div class="cvp-inner">
+        <div class="cvp-tag">For Brands & Clients</div>
+        <h2 class="cvp-title">Get work done<br><span>today.</span></h2>
+        <p class="cvp-sub">Post a task in minutes. A vetted freelancer picks it up. Work delivered — same day.</p>
+
+        <ul class="cvp-list">
+          <li>
+            <div class="cvp-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div>
+              <strong>Instant Booking</strong>
+              <span>Task picked up within minutes of posting.</span>
+            </div>
+          </li>
+          <li>
+            <div class="cvp-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <div>
+              <strong>Escrow Protection</strong>
+              <span>Payment is held until you approve the work.</span>
+            </div>
+          </li>
+          <li>
+            <div class="cvp-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <strong>One Revision Included</strong>
+              <span>Not satisfied? One revision per task, no argument.</span>
+            </div>
+          </li>
+          <li>
+            <div class="cvp-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div>
+              <strong>Same-Day Turnaround</strong>
+              <span>Most tasks complete in under 3 hours.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="cvp-stat-row">
+          <div class="cvp-stat">
+            <span class="cvp-stat-val">150+</span>
+            <span class="cvp-stat-label">Vetted Freelancers</span>
+          </div>
+          <div class="cvp-stat-div"></div>
+          <div class="cvp-stat">
+            <span class="cvp-stat-val">3 hrs</span>
+            <span class="cvp-stat-label">Avg Delivery</span>
+          </div>
+          <div class="cvp-stat-div"></div>
+          <div class="cvp-stat">
+            <span class="cvp-stat-val">4.8</span>
+            <span class="cvp-stat-label">Avg Rating</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT: Multi-step Form -->
+    <div class="client-form-wrap">
+      <div class="auth-card client-reg-card">
+
+        <!-- Progress Bar -->
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progressBar" style="width: 33.33%"></div>
+          </div>
+          <div class="progress-steps">
+            <span class="ps active" id="ps1">1</span>
+            <span class="ps-line"></span>
+            <span class="ps" id="ps2">2</span>
+            <span class="ps-line"></span>
+            <span class="ps" id="ps3">3</span>
+          </div>
+          <div class="progress-labels">
+            <span class="pl active" id="pl1">Account</span>
+            <span class="pl" id="pl2">Business</span>
+            <span class="pl" id="pl3">Preferences</span>
+          </div>
+        </div>
+
+        <!-- STEP 1: Account Details -->
+        <div class="step" id="step1">
+          <div class="step-header">
+            <h2>Create your account</h2>
+            <p>Basic details to get you started</p>
+          </div>
+          <div class="auth-form">
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" id="firstName" placeholder="Rahul">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" id="lastName" placeholder="Sharma">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Work Email</label>
+              <input type="email" class="form-input" id="email" placeholder="rahul@brandname.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <div class="phone-wrap">
+                <span class="phone-code">+91</span>
+                <input type="tel" class="form-input" id="phone" placeholder="9876543210">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <div class="input-icon-wrap">
+                <input type="password" class="form-input" id="pwd" placeholder="Create a strong password">
+                <button type="button" class="eye-btn" onclick="togglePwd('pwd', this)">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="check-label">
+              <input type="checkbox" id="terms">
+              <span>I agree to the <a href="#" class="forgot-link">Terms &amp; Conditions</a> and <a href="#" class="forgot-link">Privacy Policy</a></span>
+            </div>
+            <button type="button" class="btn btn-primary btn-full btn-lg" onclick="goStep(2)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Business Details -->
+        <div class="step hidden" id="step2">
+          <div class="step-header">
+            <h2>Tell us about your business</h2>
+            <p>Helps us match the right freelancers to your tasks</p>
+          </div>
+          <div class="auth-form">
+            <div class="form-group">
+              <label class="form-label">You are a</label>
+              <div class="client-type-grid">
+                <div class="ctype-card" onclick="selectType(this, 'brand')" data-type="brand">
+                  <div class="ctype-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                  </div>
+                  <span>Brand / Company</span>
+                </div>
+                <div class="ctype-card" onclick="selectType(this, 'youtuber')" data-type="youtuber">
+                  <div class="ctype-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                  </div>
+                  <span>YouTuber / Creator</span>
+                </div>
+                <div class="ctype-card" onclick="selectType(this, 'agency')" data-type="agency">
+                  <div class="ctype-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </div>
+                  <span>Agency</span>
+                </div>
+                <div class="ctype-card" onclick="selectType(this, 'individual')" data-type="individual">
+                  <div class="ctype-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <span>Individual</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" id="brandNameGroup">
+              <label class="form-label">Brand / Company Name</label>
+              <input type="text" class="form-input" id="brandName" placeholder="e.g. Kartar Creations">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Industry</label>
+              <select class="form-select" id="industry">
+                <option value="" disabled selected>Select your industry</option>
+                <option>Content Creation / YouTube</option>
+                <option>E-Commerce / D2C Brand</option>
+                <option>Digital Marketing Agency</option>
+                <option>SaaS / Tech Startup</option>
+                <option>Education / EdTech</option>
+                <option>Fashion / Lifestyle</option>
+                <option>Food & Beverage</option>
+                <option>Real Estate</option>
+                <option>Healthcare / Wellness</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">What tasks do you mostly need?</label>
+              <div class="skills-wrap" id="taskNeedWrap">
+                <span class="skill-chip" onclick="this.classList.toggle('active')">Design</span>
+                <span class="skill-chip" onclick="this.classList.toggle('active')">Writing / Copy</span>
+                <span class="skill-chip" onclick="this.classList.toggle('active')">Video Editing</span>
+                <span class="skill-chip" onclick="this.classList.toggle('active')">Thumbnails</span>
+                <span class="skill-chip" onclick="this.classList.toggle('active')">Development</span>
+                <span class="skill-chip" onclick="this.classList.toggle('active')">Social Media</span>
+                <span class="skill-chip" onclick="this.classList.toggle('active')">Data Entry</span>
+                <span class="skill-chip" onclick="this.classList.toggle('active')">Presentations</span>
+                <span class="skill-chip" onclick="this.classList.toggle('active')">Voice Over</span>
+                <span class="skill-chip" onclick="this.classList.toggle('active')">Research</span>
+              </div>
+            </div>
+
+            <div class="step-nav">
+              <button type="button" class="btn btn-ghost" onclick="goStep(1)">← Back</button>
+              <button type="button" class="btn btn-primary btn-lg" onclick="goStep(3)">Continue →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: Preferences & Budget -->
+        <div class="step hidden" id="step3">
+          <div class="step-header">
+            <h2>Almost done</h2>
+            <p>Set your task preferences so freelancers are ready for you</p>
+          </div>
+          <div class="auth-form">
+            <div class="form-group">
+              <label class="form-label">How often do you expect to post tasks?</label>
+              <div class="freq-grid">
+                <label class="freq-option">
+                  <input type="radio" name="freq" value="daily">
+                  <span>Daily</span>
+                </label>
+                <label class="freq-option">
+                  <input type="radio" name="freq" value="weekly" checked>
+                  <span>A few times a week</span>
+                </label>
+                <label class="freq-option">
+                  <input type="radio" name="freq" value="monthly">
+                  <span>Occasionally</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Typical budget per task</label>
+              <div class="budget-grid">
+                <label class="freq-option">
+                  <input type="radio" name="budget" value="low">
+                  <span>Under ₹500</span>
+                </label>
+                <label class="freq-option">
+                  <input type="radio" name="budget" value="mid" checked>
+                  <span>₹500 – ₹2,000</span>
+                </label>
+                <label class="freq-option">
+                  <input type="radio" name="budget" value="high">
+                  <span>₹2,000+</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">How did you hear about StryK?</label>
+              <select class="form-select">
+                <option value="" disabled selected>Select one</option>
+                <option>Instagram / Social Media</option>
+                <option>Friend / Referral</option>
+                <option>LinkedIn</option>
+                <option>YouTube</option>
+                <option>College / Campus</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="referral-row">
+              <div class="form-group" style="flex:1">
+                <label class="form-label">Referral Code <span class="form-hint" style="display:inline">(optional)</span></label>
+                <input type="text" class="form-input" placeholder="e.g. STRYK10">
+              </div>
+            </div>
+
+            <div class="step-nav">
+              <button type="button" class="btn btn-ghost" onclick="goStep(2)">← Back</button>
+              <button type="button" class="btn btn-primary btn-lg" onclick="localStorage.setItem('stryk_role','client');window.location='otp-verify.html'">Create Account →</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="auth-switch">Want to earn instead? <a href="register.html">Join as Freelancer</a></p>
+        <p class="auth-switch" style="margin-top:6px">Already have an account? <a href="login.html">Login</a></p>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+let currentStep = 1;
+let selectedClientType = null;
+
+function goStep(n) {
+  if (n === 2 && currentStep === 1) {
+    const terms = document.getElementById('terms');
+    if (!terms.checked) { showError('Please accept the Terms & Conditions'); return; }
+  }
+  if (n === 3 && currentStep === 2) {
+    if (!selectedClientType) { showError('Please select what type of client you are'); return; }
+  }
+
+  document.getElementById('step' + currentStep).classList.add('hidden');
+  document.getElementById('step' + n).classList.remove('hidden');
+  currentStep = n;
+  updateProgress(n);
+}
+
+function updateProgress(n) {
+  const pct = (n / 3) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+
+  for (let i = 1; i <= 3; i++) {
+    const ps = document.getElementById('ps' + i);
+    const pl = document.getElementById('pl' + i);
+    ps.classList.toggle('active', i <= n);
+    ps.classList.toggle('done', i < n);
+    pl.classList.toggle('active', i === n);
+  }
+}
+
+function selectType(el, type) {
+  document.querySelectorAll('.ctype-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedClientType = type;
+  const showName = ['brand', 'agency', 'youtuber'].includes(type);
+  document.getElementById('brandNameGroup').style.display = showName ? '' : 'none';
+  const label = { brand: 'Brand / Company Name', agency: 'Agency Name', youtuber: 'Channel / Creator Name' };
+  if (label[type]) {
+    document.querySelector('#brandNameGroup .form-label').textContent = label[type];
+    document.getElementById('brandName').placeholder = type === 'youtuber' ? 'e.g. TechWithRahul' : 'e.g. Kartar Creations';
+  }
+}
+
+function togglePwd(id, btn) {
+  const inp = document.getElementById(id);
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+function showError(msg) {
+  const existing = document.querySelector('.inline-error');
+  if (existing) existing.remove();
+  const div = document.createElement('div');
+  div.className = 'inline-error';
+  div.textContent = msg;
+  const activeStep = document.getElementById('step' + currentStep);
+  const firstBtn = activeStep.querySelector('.btn-primary');
+  firstBtn.parentNode.insertBefore(div, firstBtn);
+  setTimeout(() => div.remove(), 3000);
+}
+
+// Init: hide brandNameGroup by default
+document.getElementById('brandNameGroup').style.display = 'none';
+</script>
+
+<script src="animations.js"></script>
+</body>
+</html>

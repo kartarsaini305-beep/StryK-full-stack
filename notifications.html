@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notifications — StryK</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="notifications.css">
+</head>
+<body>
+<script src="auth.js"></script>
+<script>if(!localStorage.getItem('stryk_role'))window.location.replace('login.html');</script>
+<script src="auth.js"></script>
+<script>StryKAuth.guard('freelancer');</script>
+<script src="preloader.js"></script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav><span class="level-badge"> Level 1</span><div class="avatar">KS</div></nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span></div></div>
+</nav>
+<div class="app-layout">
+  <aside class="sidebar">
+    <ul class="sidebar-menu">
+      <li><a href="freelancer-dashboard.html"> Dashboard</a></li>
+      <li><a href="browse-tasks.html"> Browse Tasks</a></li>
+      <li><a href="my-tasks.html"> My Tasks</a></li>
+      <li><a href="wallet.html"> Wallet</a></li>
+      <li><a href="ratings.html"> Ratings</a></li>
+      <li><a href="disputes.html"> Disputes</a></li>
+      <li><a href="profile.html"> Profile</a></li>
+    </ul>
+  </aside>
+  <main class="main-content">
+    <div class="flex-between mb-3">
+      <div class="page-header" style="margin-bottom:0">
+        <h1>Notifications</h1>
+        <p>Stay updated on your tasks</p>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="markAllRead()">Mark all read</button>
+    </div>
+
+    <div class="notif-list">
+      <div class="notif-item unread" onclick="this.classList.remove('unread')">
+        <div class="ni-icon pay"></div>
+        <div class="ni-body">
+          <p class="fw-600 text-sm">Payment Released — ₹396</p>
+          <p class="text-sm text-muted">Client @techcreator approved your YouTube Thumbnail. ₹396 sent to your UPI.</p>
+          <p class="text-xs text-muted mt-1">2 minutes ago</p>
+        </div>
+        <div class="ni-dot"></div>
+      </div>
+      <div class="notif-item unread" onclick="this.classList.remove('unread')">
+        <div class="ni-icon task"></div>
+        <div class="ni-body">
+          <p class="fw-600 text-sm">New Task Available</p>
+          <p class="text-sm text-muted">A new Design task matching your skills was posted — "Instagram Reels Cover Pack" · ₹380</p>
+          <p class="text-xs text-muted mt-1">15 minutes ago</p>
+        </div>
+        <div class="ni-dot"></div>
+      </div>
+      <div class="notif-item unread" onclick="this.classList.remove('unread')">
+        <div class="ni-icon rating"></div>
+        <div class="ni-body">
+          <p class="fw-600 text-sm">New Rating Received — 5.0 </p>
+          <p class="text-sm text-muted">@foodiebrand rated you 5 stars and left a review on your captions task.</p>
+          <p class="text-xs text-muted mt-1">1 hour ago</p>
+        </div>
+        <div class="ni-dot"></div>
+      </div>
+      <div class="notif-item" onclick="">
+        <div class="ni-icon clarity"></div>
+        <div class="ni-body">
+          <p class="fw-600 text-sm">Clarity Window — Client Responded</p>
+          <p class="text-sm text-muted">@localcafe replied to your question on the Logo Design task.</p>
+          <p class="text-xs text-muted mt-1">3 hours ago</p>
+        </div>
+      </div>
+      <div class="notif-item" onclick="">
+        <div class="ni-icon level"></div>
+        <div class="ni-body">
+          <p class="fw-600 text-sm">Level Progress Update</p>
+          <p class="text-sm text-muted">You've completed 12 tasks. 3 more to reach Level 2 — Rising!</p>
+          <p class="text-xs text-muted mt-1">Yesterday</p>
+        </div>
+      </div>
+      <div class="notif-item" onclick="">
+        <div class="ni-icon task"></div>
+        <div class="ni-body">
+          <p class="fw-600 text-sm">Task Auto-Released — Payment Sent</p>
+          <p class="text-sm text-muted">Client didn't respond in 48hrs. ₹264 auto-released from escrow to your wallet.</p>
+          <p class="text-xs text-muted mt-1">2 days ago</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+function markAllRead() {
+  document.querySelectorAll('.notif-item').forEach(n => n.classList.remove('unread'));
+  document.querySelectorAll('.ni-dot').forEach(d => d.remove());
+}
+</script>
+<script src="sidebar.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>

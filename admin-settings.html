@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings — StryK Admin</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="admin-dashboard.css">
+<link rel="stylesheet" href="admin-sub.css">
+</head>
+<body>
+<script src="preloader.js"></script>
+<script>
+if (!sessionStorage.getItem('stryk_admin_auth')) {
+  window.location.replace('admin-login.html');
+}
+</script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav><span class="admin-badge">Admin</span><div class="avatar" style="background:var(--error-bg);border-color:var(--error);color:var(--error)">AD</div></nav>
+</nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Admin Settings</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Platform Config</span><span class="ticker-item"><span class="ticker-dot"></span>Admin Settings</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Platform Config</span></div></div>
+<div class="app-layout">
+  <aside class="sidebar">
+    <ul class="sidebar-menu">
+      <li><a href="admin-dashboard.html">Overview</a></li>
+      <li><a href="admin-users.html">Users</a></li>
+      <li><a href="admin-tasks.html">All Tasks</a></li>
+      <li><a href="admin-disputes.html">Disputes</a></li>
+      <li><a href="admin-transactions.html">Transactions</a></li>
+      <li><a href="admin-reports.html">Reports</a></li>
+      <li><a href="admin-settings.html" class="active">Settings</a></li>
+    </ul>
+  </aside>
+  <main class="main-content">
+    <div class="mb-3">
+      <h1 class="font-head" style="font-size:1.6rem;font-weight:700">Platform Settings</h1>
+      <p class="text-muted text-sm">Configure fees, limits, and platform behaviour</p>
+    </div>
+
+    <div class="settings-grid">
+
+      <div class="card mb-3">
+        <h3 class="font-head fw-700 mb-3" style="font-size:1rem">Fee Structure</h3>
+        <div class="settings-form">
+          <div class="form-group">
+            <label class="form-label">Platform Commission (%)</label>
+            <input type="number" class="form-input" value="12" min="0" max="50">
+            <span class="form-hint">Currently 0% for pre-beta members (6 months)</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Pre-Beta Free Period (months)</label>
+            <input type="number" class="form-input" value="6" min="1" max="24">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Minimum Task Budget (₹)</label>
+            <input type="number" class="form-input" value="100">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Maximum Task Budget (₹)</label>
+            <input type="number" class="form-input" value="50000">
+          </div>
+          <button class="btn btn-primary" onclick="saveSetting(this)">Save Fee Settings</button>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <h3 class="font-head fw-700 mb-3" style="font-size:1rem">Task Limits</h3>
+        <div class="settings-form">
+          <div class="form-group">
+            <label class="form-label">Clarity Window Duration (mins)</label>
+            <input type="number" class="form-input" value="10">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Max Revisions Per Task</label>
+            <input type="number" class="form-input" value="1">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Auto-release Escrow After (hours)</label>
+            <input type="number" class="form-input" value="24">
+            <span class="form-hint">If client doesn't respond in time</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Max Active Tasks Per Freelancer</label>
+            <input type="number" class="form-input" value="3">
+          </div>
+          <button class="btn btn-primary" onclick="saveSetting(this)">Save Task Limits</button>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <h3 class="font-head fw-700 mb-3" style="font-size:1rem">Platform Toggles</h3>
+        <div class="toggle-list">
+          <div class="toggle-row">
+            <div><p class="fw-600 text-sm">Pre-Beta Mode</p><p class="text-xs text-muted">Restricts access to pre-beta signups only</p></div>
+            <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+          </div>
+          <div class="toggle-row">
+            <div><p class="fw-600 text-sm">Maintenance Mode</p><p class="text-xs text-muted">Shows maintenance page to all users</p></div>
+            <label class="toggle"><input type="checkbox"><span class="toggle-track"></span></label>
+          </div>
+          <div class="toggle-row">
+            <div><p class="fw-600 text-sm">New Registrations</p><p class="text-xs text-muted">Allow new users to sign up</p></div>
+            <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+          </div>
+          <div class="toggle-row">
+            <div><p class="fw-600 text-sm">Email Notifications</p><p class="text-xs text-muted">Send transactional emails to users</p></div>
+            <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+          </div>
+          <div class="toggle-row">
+            <div><p class="fw-600 text-sm">WhatsApp Alerts</p><p class="text-xs text-muted">Send task alerts via WhatsApp</p></div>
+            <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="font-head fw-700 mb-3" style="font-size:1rem">Admin Access</h3>
+        <div class="settings-form">
+          <div class="form-group">
+            <label class="form-label">Admin Email</label>
+            <input type="email" class="form-input" value="admin@stryk.in">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Change Admin Password</label>
+            <input type="password" class="form-input" placeholder="New password">
+          </div>
+          <button class="btn btn-primary" onclick="saveSetting(this)">Update Credentials</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script>
+function saveSetting(btn) {
+  btn.textContent = 'Saved';
+  btn.style.background = 'var(--success)';
+  btn.style.borderColor = 'var(--success)';
+  setTimeout(() => {
+    btn.textContent = btn.textContent.includes('Fee') ? 'Save Fee Settings' : btn.textContent.includes('Task') ? 'Save Task Limits' : 'Update Credentials';
+    btn.style.background = '';
+    btn.style.borderColor = '';
+  }, 1800);
+}
+</script>
+<script src="sidebar.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>

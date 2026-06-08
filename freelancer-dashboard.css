@@ -1,0 +1,28 @@
+.level-badge {
+  background: var(--accent-glow); color: var(--accent);
+  padding: 4px 12px; border-radius: 99px;
+  font-size: 13px; font-weight: 600; border: 1px solid rgba(245,158,11,0.3);
+}
+.progress-bar {
+  height: 8px; background: var(--border); border-radius: 99px; overflow: hidden;
+}
+.progress-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.4s; }
+.tasks-preview { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.task-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 1.25rem; border-bottom: 1px solid var(--border);
+  cursor: pointer; transition: background 0.15s;
+}
+.task-row:last-child { border-bottom: none; }
+.task-row:hover { background: var(--card-hover); }
+.task-info { display: flex; align-items: center; gap: 10px; }
+.task-cat {
+  padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;
+}
+.task-cat.design { background: rgba(167,139,250,0.15); color: #a78bfa; }
+.task-cat.writing { background: rgba(34,211,238,0.15); color: #22d3ee; }
+.task-cat.data { background: rgba(52,211,153,0.15); color: #34d399; }
+.task-cat.video { background: rgba(248,113,113,0.15); color: #f87171; }
+.task-cat.dev { background: rgba(251,191,36,0.15); color: #fbbf24; }
+.task-pay { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--accent); white-space: nowrap; }

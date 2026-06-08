@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clarity Window — StryK</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="clarity-window.css">
+</head>
+<body>
+<script src="auth.js"></script>
+<script>if(!localStorage.getItem('stryk_role'))window.location.replace('login.html');</script>
+<script src="auth.js"></script>
+<script>StryKAuth.guard('freelancer');</script>
+<script src="preloader.js"></script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav><div class="avatar">KS</div></nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span></div></div>
+</nav>
+<main class="page-body cw-page">
+  <div class="cw-container">
+    <div class="cw-header">
+      <div>
+        <h2> Clarity Window</h2>
+        <p class="text-sm text-muted">YouTube Thumbnail — Tech Review Channel</p>
+      </div>
+      <div class="timer-wrap">
+        <div class="timer-ring">
+          <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="25" fill="none" stroke="var(--border)" stroke-width="4"/><circle cx="30" cy="30" r="25" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="0" id="timerCircle" style="transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset 1s linear"/></svg>
+          <span id="timerText">5:00</span>
+        </div>
+        <span class="text-xs text-muted">Time left</span>
+      </div>
+    </div>
+
+    <div class="alert alert-info mb-3">
+      <span></span>
+      <div>You can ask the client <strong>up to 2 questions</strong> before work begins. Make them count! If client doesn't reply, work begins with existing brief.</div>
+    </div>
+
+    <div class="questions-used"><span class="qu-dot used"></span><span class="qu-dot" id="q2dot"></span><span class="text-xs text-muted" id="qu-label">1 of 2 questions used</span></div>
+
+    <div class="chat-area" id="chatArea">
+      <div class="chat-msg system">Task booked! Clarity Window is now open. Ask your questions.</div>
+      <div class="chat-msg freelancer">
+        <div class="msg-bubble">What color scheme do you prefer for the thumbnail — dark or light background?</div>
+        <div class="msg-time">You · 4:32 PM</div>
+      </div>
+      <div class="chat-msg client">
+        <div class="msg-bubble">Dark background with red accents. Bold white text please!</div>
+        <div class="msg-time">Client · 4:33 PM</div>
+      </div>
+    </div>
+
+    <div class="chat-input-area">
+      <div class="remaining-info" id="remainingInfo"><span class="text-sm text-muted">1 question remaining</span></div>
+      <div class="chat-input-row">
+        <textarea class="form-textarea chat-ta" id="questionInput" placeholder="Type your question here..." rows="2"></textarea>
+        <div class="chat-actions">
+          <button class="btn btn-primary" onclick="sendQuestion()">Send Question</button>
+          <button class="btn btn-secondary" onclick="startWork()">Start Work Now →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+let timeLeft = 300, questionsUsed = 1;
+const circle = document.getElementById('timerCircle');
+const timerText = document.getElementById('timerText');
+const totalDash = 157;
+const interval = setInterval(() => {
+  timeLeft--;
+  const m = Math.floor(timeLeft/60), s = timeLeft%60;
+  timerText.textContent = m + ':' + String(s).padStart(2,'0');
+  circle.style.strokeDashoffset = totalDash * (1 - timeLeft/300);
+  if (timeLeft <= 60) circle.style.stroke = 'var(--error)';
+  if (timeLeft <= 0) { clearInterval(interval); autoAssign(); }
+}, 1000);
+function autoAssign() {
+  document.querySelector('.chat-input-area').innerHTML = '<div class="alert alert-warning"><span></span><div>Time\'s up! Task auto-assigned. Work begins with original brief.</div></div><a href="submit-work.html" class="btn btn-primary btn-full mt-2">Start Working →</a>';
+}
+function sendQuestion() {
+  const q = document.getElementById('questionInput').value.trim();
+  if (!q) return;
+  if (questionsUsed >= 2) { alert('No questions remaining'); return; }
+  const chat = document.getElementById('chatArea');
+  chat.innerHTML += `<div class="chat-msg freelancer"><div class="msg-bubble">${q}</div><div class="msg-time">You · Just now</div></div>`;
+  chat.scrollTop = chat.scrollHeight;
+  document.getElementById('questionInput').value = '';
+  questionsUsed++;
+  document.getElementById('q2dot').classList.add('used');
+  document.getElementById('qu-label').textContent = '2 of 2 questions used';
+  document.getElementById('remainingInfo').innerHTML = '<span class="text-sm" style="color:var(--error)">No more questions allowed</span>';
+  document.getElementById('questionInput').disabled = true;
+}
+function startWork() { window.location = 'submit-work.html'; }
+</script>
+<script src="animations.js"></script>
+<script>
+// Role-aware navigation
+var _role = localStorage.getItem("stryk_role");
+document.querySelectorAll("a[href='freelancer-dashboard.html']").forEach(function(a){
+  if(_role==="client") a.href="client-dashboard.html";
+});
+</script>
+</body>
+</html>

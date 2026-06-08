@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post a Task — StryK</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="post-task.css">
+</head>
+<body>
+<script src="auth.js"></script>
+<script>StryKAuth.guard('client');</script>
+<script src="preloader.js"></script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav><a href="client-dashboard.html" class="btn btn-ghost btn-sm">← Dashboard</a></nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span></div></div>
+</nav>
+<div class="app-layout">
+  <aside class="sidebar">
+        <ul class="sidebar-menu">
+      <li><a href="client-dashboard.html">Dashboard</a></li>
+      <li><a href="post-task.html" class="active">Post Task</a></li>
+      <li><a href="client-my-tasks.html">My Tasks</a></li>
+      <li><a href="task-review.html">Review Work</a></li>
+      <li><a href="client-wallet.html">Wallet</a></li>
+      <li><a href="client-disputes.html">Disputes</a></li>
+      <li><a href="client-ratings.html">My Ratings</a></li>
+      <li><a href="client-profile.html">Profile</a></li>
+    </ul>
+  </aside>
+  <main class="main-content">
+    <div class="pt-header">
+      <h1 class="font-head" style="font-size:1.6rem;font-weight:700">Post a New Task</h1>
+      <!-- Progress steps -->
+      <div class="pt-steps">
+        <div class="pts active" id="pts1"><span class="pts-num">1</span>Details</div>
+        <div class="pts-line"></div>
+        <div class="pts" id="pts2"><span class="pts-num">2</span>Level &amp; Pay</div>
+        <div class="pts-line"></div>
+        <div class="pts" id="pts3"><span class="pts-num">3</span>Review &amp; Pay</div>
+      </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div id="s1" class="pt-step-content">
+      <div class="card">
+        <h2 class="font-head fw-700 mb-3">Task Details</h2>
+        <div class="form-group">
+          <label class="form-label">Task Title</label>
+          <input type="text" class="form-input" placeholder="e.g. YouTube Thumbnail for Tech Channel">
+          <span class="form-hint">Be specific — better titles get better freelancers</span>
+        </div>
+        <div class="form-group mt-2">
+          <label class="form-label">Category</label>
+          <select class="form-select">
+            <option value="">Select category...</option>
+            <option>Design</option><option>Writing</option><option>Video Editing</option>
+            <option>Development</option><option>Data</option><option>Social Media</option>
+            <option>Voice</option><option>Presentations</option>
+          </select>
+        </div>
+        <div class="form-group mt-2">
+          <label class="form-label">Task Description</label>
+          <textarea class="form-textarea" rows="5" placeholder="Describe exactly what you need. Include style preferences, brand guidelines, examples you like..."></textarea>
+        </div>
+        <div class="form-group mt-2">
+          <label class="form-label">Deliverables (what you expect to receive)</label>
+          <textarea class="form-textarea" rows="3" placeholder="e.g. 1 PNG file (1280x720px), bold title text, dark background..."></textarea>
+        </div>
+        <div class="grid-2 mt-2">
+          <div class="form-group">
+            <label class="form-label">Estimated Task Duration</label>
+            <select class="form-select">
+              <option>30 minutes</option><option>1 hour</option>
+              <option selected>1–2 hours</option><option>2–3 hours</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Deadline</label>
+            <input type="datetime-local" class="form-input">
+          </div>
+        </div>
+        <div class="form-group mt-2">
+          <label class="form-label">Reference Files (optional)</label>
+          <div class="upload-zone-sm" onclick="document.getElementById('refFile').click()">
+            <span> Attach files</span>
+            <input type="file" id="refFile" multiple style="display:none">
+          </div>
+        </div>
+        <div class="flex gap-2 mt-3">
+          <button class="btn btn-primary" onclick="goStep(2)">Next: Level &amp; Pay →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="s2" class="pt-step-content hidden">
+      <div class="card">
+        <h2 class="font-head fw-700 mb-3">Freelancer Level &amp; Pay</h2>
+        <div class="level-options">
+          <div class="level-opt" onclick="selectLevel(1,this)">
+            <div class="lo-top"><span class="lo-title">Level 1 — Beginner</span><span class="lo-range">₹100–₹500</span></div>
+            <p class="text-sm text-muted">Simple tasks, high volume. Great for fast, low-cost work.</p>
+          </div>
+          <div class="level-opt selected" onclick="selectLevel(2,this)">
+            <div class="lo-top"><span class="lo-title">Level 2 — Rising</span><span class="lo-range">₹500–₹1,500</span></div>
+            <p class="text-sm text-muted">Balanced quality and price. Most popular choice.</p>
+          </div>
+          <div class="level-opt" onclick="selectLevel(3,this)">
+            <div class="lo-top"><span class="lo-title">Level 3 — Skilled</span><span class="lo-range">₹1,500–₹4,000</span></div>
+            <p class="text-sm text-muted">Expert quality. Best for complex deliverables.</p>
+          </div>
+          <div class="level-opt" onclick="selectLevel(4,this)">
+            <div class="lo-top"><span class="lo-title">Level 4 — Expert</span><span class="lo-range">₹4,000+</span></div>
+            <p class="text-sm text-muted">Premium quality. Highest-rated freelancers only.</p>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label class="form-label">Your Budget</label>
+          <div class="pay-input-wrap">
+            <span class="pay-prefix">₹</span>
+            <input type="number" class="form-input" id="budgetInput" placeholder="500" min="100" oninput="calcFee()">
+          </div>
+          <span class="form-hint">Minimum for Level 2: ₹500</span>
+        </div>
+        <div class="fee-breakdown mt-2">
+          <div class="fb-row"><span>Task Pay</span><span id="fb-pay">₹500</span></div>
+          <div class="fb-row"><span class="text-muted">Platform Fee (12% on freelancer)</span><span id="fb-fee" class="text-muted">Charged to freelancer</span></div>
+          <div class="fb-row fw-600"><span>You Pay</span><span id="fb-total" class="text-accent">₹500</span></div>
+        </div>
+        <div class="flex gap-2 mt-3">
+          <button class="btn btn-ghost" onclick="goStep(1)">← Back</button>
+          <button class="btn btn-primary" onclick="goStep(3)">Review &amp; Pay →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div id="s3" class="pt-step-content hidden">
+      <div class="card">
+        <h2 class="font-head fw-700 mb-3">Review &amp; Confirm</h2>
+        <div class="review-row"><span class="text-muted">Title</span><span class="fw-600">YouTube Thumbnail for Tech Channel</span></div>
+        <div class="review-row"><span class="text-muted">Category</span><span class="fw-600">Design</span></div>
+        <div class="review-row"><span class="text-muted">Freelancer Level</span><span class="fw-600">Level 2 — Rising</span></div>
+        <div class="review-row"><span class="text-muted">Budget</span><span class="fw-600 text-accent">₹500</span></div>
+        <div class="review-row"><span class="text-muted">Deadline</span><span class="fw-600">Today 8:00 PM</span></div>
+        <div class="divider"></div>
+        <div class="alert alert-info mb-3"><span></span><div>Payment of <strong>₹500</strong> will be held in Razorpay escrow. Released only when you approve the work.</div></div>
+        <div class="flex gap-2">
+          <button class="btn btn-ghost" onclick="goStep(2)">← Edit</button>
+          <button class="btn btn-primary btn-lg" onclick="payAndPost()">Pay ₹500 &amp; Post Task →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+function goStep(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById('s'+i).classList.toggle('hidden', i !== n);
+    document.getElementById('pts'+i).classList.toggle('active', i <= n);
+    document.getElementById('pts'+i).classList.toggle('done', i < n);
+  });
+}
+function selectLevel(n, el) {
+  document.querySelectorAll('.level-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function calcFee() {
+  const v = parseInt(document.getElementById('budgetInput').value) || 0;
+  document.getElementById('fb-pay').textContent = '₹' + v;
+  document.getElementById('fb-total').textContent = '₹' + v;
+}
+function payAndPost() {
+  alert('Task posted! Payment held in escrow. Waiting for a freelancer to book...');
+  window.location = 'client-dashboard.html';
+}
+</script>
+<script src="sidebar.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>

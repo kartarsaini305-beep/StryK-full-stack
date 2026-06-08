@@ -1,0 +1,24 @@
+.cw-page { min-height: calc(100vh - var(--nav-h)); display: flex; align-items: flex-start; justify-content: center; padding: 2rem; }
+.cw-container { width: 100%; max-width: 700px; }
+.cw-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+.cw-header h2 { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; }
+.timer-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.timer-ring { position: relative; width: 60px; height: 60px; }
+.timer-ring svg { width: 100%; height: 100%; }
+.timer-ring span { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: var(--font-head); font-size: 13px; font-weight: 700; color: var(--text-1); }
+.questions-used { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
+.qu-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); transition: background 0.2s; }
+.qu-dot.used { background: var(--accent); }
+.chat-area { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1rem; min-height: 200px; max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; margin-bottom: 1rem; }
+.chat-msg { display: flex; flex-direction: column; }
+.chat-msg.system .msg-bubble { background: var(--card); color: var(--text-3); font-size: 13px; padding: 6px 12px; border-radius: var(--radius-sm); align-self: center; }
+.chat-msg.freelancer { align-items: flex-end; }
+.chat-msg.client { align-items: flex-start; }
+.msg-bubble { max-width: 80%; padding: 10px 14px; border-radius: var(--radius); font-size: 14px; line-height: 1.5; }
+.chat-msg.freelancer .msg-bubble { background: var(--accent); color: #000; border-radius: var(--radius) var(--radius) 0 var(--radius); }
+.chat-msg.client .msg-bubble { background: var(--card); color: var(--text-1); border: 1px solid var(--border); border-radius: var(--radius) var(--radius) var(--radius) 0; }
+.msg-time { font-size: 11px; color: var(--text-3); margin-top: 3px; }
+.chat-input-area { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1rem; }
+.remaining-info { margin-bottom: 8px; }
+.chat-ta { min-height: 60px; max-height: 100px; margin-bottom: 8px; }
+.chat-actions { display: flex; gap: 8px; }

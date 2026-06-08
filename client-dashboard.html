@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Dashboard — StryK</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="client-dashboard.css">
+</head>
+<body>
+<script src="auth.js"></script>
+<script>StryKAuth.guard('client');</script>
+<script src="preloader.js"></script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav>
+    <span class="plan-badge"> Pro Plan</span>
+    <div class="avatar">YC</div>
+  </nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span></div></div>
+</nav>
+<div class="app-layout">
+  <aside class="sidebar">
+        <ul class="sidebar-menu">
+      <li><a href="client-dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="post-task.html">Post Task</a></li>
+      <li><a href="client-my-tasks.html">My Tasks</a></li>
+      <li><a href="task-review.html">Review Work</a></li>
+      <li><a href="client-wallet.html">Wallet</a></li>
+      <li><a href="client-disputes.html">Disputes</a></li>
+      <li><a href="client-ratings.html">My Ratings</a></li>
+      <li><a href="client-profile.html">Profile</a></li>
+    </ul>
+  </aside>
+  <main class="main-content">
+    <div class="flex-between mb-3">
+      <div>
+        <h1 class="font-head" style="font-size:1.6rem;font-weight:700">Client Dashboard</h1>
+        <p class="text-muted text-sm">Manage your tasks and freelancers</p>
+      </div>
+      <a href="post-task.html" class="btn btn-primary">+ Post New Task</a>
+    </div>
+
+    <div class="stat-grid mb-3">
+      <div class="stat-card"><div class="stat-label">Tasks Posted</div><div class="stat-value">24</div><div class="stat-sub">This month</div></div>
+      <div class="stat-card stat-accent"><div class="stat-label">Total Spent</div><div class="stat-value">₹12,400</div><div class="stat-sub">This month</div></div>
+      <div class="stat-card"><div class="stat-label">Active Tasks</div><div class="stat-value">3</div><div class="stat-sub">In progress</div></div>
+      <div class="stat-card"><div class="stat-label">Avg Task Cost</div><div class="stat-value">₹517</div><div class="stat-sub">Per task</div></div>
+    </div>
+
+    <!-- Active Tasks -->
+    <h2 class="font-head fw-700 mb-2">Active Tasks</h2>
+    <div class="active-tasks mb-3">
+      <div class="atask-card">
+        <div class="flex-between mb-1">
+          <span class="task-cat design">Design</span>
+          <span class="badge badge-info">In Review</span>
+        </div>
+        <p class="fw-600 text-sm">Logo design for my startup</p>
+        <p class="text-xs text-muted mt-1">Freelancer: @arjun_designs · Submitted 1hr ago</p>
+        <div class="flex gap-2 mt-2">
+          <a href="task-review.html" class="btn btn-primary btn-sm">Review Work</a>
+        </div>
+      </div>
+      <div class="atask-card">
+        <div class="flex-between mb-1">
+          <span class="task-cat writing">Writing</span>
+          <span class="badge badge-accent">In Progress</span>
+        </div>
+        <p class="fw-600 text-sm">Video script for product launch</p>
+        <p class="text-xs text-muted mt-1">Freelancer: @writer_pro · Due in 3hrs</p>
+        <div class="flex gap-2 mt-2">
+          <button class="btn btn-ghost btn-sm">View Details</button>
+        </div>
+      </div>
+      <div class="atask-card">
+        <div class="flex-between mb-1">
+          <span class="task-cat data">Data</span>
+          <span class="badge badge-neutral">Open</span>
+        </div>
+        <p class="fw-600 text-sm">Competitor research spreadsheet</p>
+        <p class="text-xs text-muted mt-1">Waiting for freelancer · Posted 20min ago</p>
+        <button class="btn btn-ghost btn-sm mt-2">Edit Task</button>
+      </div>
+    </div>
+
+    <!-- Recent Completed -->
+    <h2 class="font-head fw-700 mb-2">Recent Completed</h2>
+    <div class="card table-wrap">
+      <table>
+        <thead>
+          <tr><th>Task</th><th>Freelancer</th><th>Paid</th><th>Rating</th><th>Date</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>YouTube Thumbnail Pack (5)</td>
+            <td>@kartar_designs</td>
+            <td style="color:var(--error)">₹900</td>
+            <td> 5.0</td>
+            <td class="text-muted">Yesterday</td>
+          </tr>
+          <tr>
+            <td>Instagram Captions (10)</td>
+            <td>@write_raubin</td>
+            <td style="color:var(--error)">₹250</td>
+            <td> 4.8</td>
+            <td class="text-muted">2 days ago</td>
+          </tr>
+          <tr>
+            <td>Landing Page Copy</td>
+            <td>@content_crew</td>
+            <td style="color:var(--error)">₹500</td>
+            <td> 4.5</td>
+            <td class="text-muted">3 days ago</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<script src="sidebar.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+.auth-page {
+  min-height: calc(100vh - var(--nav-h));
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(245,158,11,0.06) 0%, transparent 60%);
+}
+.auth-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  width: 100%; max-width: 420px;
+  box-shadow: var(--shadow);
+}
+.auth-header { text-align: center; margin-bottom: 2rem; }
+.auth-header h1 { font-family: var(--font-head); font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; }
+.auth-header p { color: var(--text-2); font-size: 14px; }
+.auth-form { display: flex; flex-direction: column; gap: 1.2rem; }
+.input-icon-wrap { position: relative; }
+.input-icon-wrap .form-input { padding-right: 42px; }
+.eye-btn {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer; font-size: 16px; color: var(--text-3);
+}
+.check-label { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-2); cursor: pointer; }
+.check-label input { accent-color: var(--accent); }
+.forgot-link { font-size: 13px; color: var(--accent); text-decoration: none; }
+.forgot-link:hover { text-decoration: underline; }
+.auth-divider { text-align: center; position: relative; margin: 0.5rem 0; }
+.auth-divider::before {
+  content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--border);
+}
+.auth-divider span { background: var(--card); position: relative; padding: 0 1rem; font-size: 13px; color: var(--text-3); }
+.auth-switch { text-align: center; font-size: 14px; color: var(--text-2); margin-top: 1.5rem; }
+.auth-switch a { color: var(--accent); text-decoration: none; font-weight: 600; }

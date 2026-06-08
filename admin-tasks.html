@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Tasks — StryK Admin</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="admin-dashboard.css">
+<link rel="stylesheet" href="admin-sub.css">
+</head>
+<body>
+<script src="preloader.js"></script>
+<script>
+if (!sessionStorage.getItem('stryk_admin_auth')) {
+  window.location.replace('admin-login.html');
+}
+</script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav><span class="admin-badge">Admin</span><div class="avatar" style="background:var(--error-bg);border-color:var(--error);color:var(--error)">AD</div></nav>
+</nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span></div></div>
+<div class="app-layout">
+  <aside class="sidebar">
+    <ul class="sidebar-menu">
+      <li><a href="admin-dashboard.html">Overview</a></li>
+      <li><a href="admin-users.html">Users</a></li>
+      <li><a href="admin-tasks.html" class="active">All Tasks</a></li>
+      <li><a href="admin-disputes.html">Disputes</a></li>
+      <li><a href="admin-transactions.html">Transactions</a></li>
+      <li><a href="admin-reports.html">Reports</a></li>
+      <li><a href="admin-settings.html">Settings</a></li>
+    </ul>
+  </aside>
+  <main class="main-content">
+    <div class="flex-between mb-3">
+      <div>
+        <h1 class="font-head" style="font-size:1.6rem;font-weight:700">All Tasks</h1>
+        <p class="text-muted text-sm">143 total tasks · 12 live · 118 completed · 13 cancelled</p>
+      </div>
+      <button class="btn btn-ghost btn-sm">Export</button>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="stat-grid mb-3" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stat-card"><div class="stat-label">Live Now</div><div class="stat-value">12</div><div class="stat-sub">Currently in progress</div></div>
+      <div class="stat-card stat-accent"><div class="stat-label">Completed Today</div><div class="stat-value">8</div><div class="stat-sub">₹3,400 processed</div></div>
+      <div class="stat-card"><div class="stat-label">Avg Completion</div><div class="stat-value">2.4h</div><div class="stat-sub">Below 3hr target</div></div>
+      <div class="stat-card"><div class="stat-label">Cancellation Rate</div><div class="stat-value">9%</div><div class="stat-sub">Industry avg: 18%</div></div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-bar mb-3">
+      <div class="filter-tabs">
+        <button class="ftab active" onclick="filterTasks('all',this)">All</button>
+        <button class="ftab" onclick="filterTasks('live',this)">Live</button>
+        <button class="ftab" onclick="filterTasks('completed',this)">Completed</button>
+        <button class="ftab" onclick="filterTasks('disputed',this)">Disputed</button>
+        <button class="ftab" onclick="filterTasks('cancelled',this)">Cancelled</button>
+      </div>
+      <div class="search-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" class="search-input" placeholder="Search tasks..." oninput="searchTasks(this.value)">
+      </div>
+    </div>
+
+    <div class="card" style="padding:0;overflow:hidden">
+      <div class="table-wrap">
+        <table id="tasksTable">
+          <thead>
+            <tr><th>Task</th><th>Client</th><th>Freelancer</th><th>Category</th><th>Budget</th><th>Posted</th><th>Deadline</th><th>Status</th><th>Action</th></tr>
+          </thead>
+          <tbody id="tasksBody">
+            <tr data-status="live"><td><p class="fw-600 text-sm">YouTube Thumbnail — Tech Channel</p><p class="text-xs text-muted">2 revisions · Level 1</p></td><td class="text-sm">TechCreator YT</td><td class="text-sm">Kartar Saini</td><td><span class="badge badge-neutral">Design</span></td><td class="fw-600 text-accent">₹450</td><td class="text-sm text-muted">Today 10:30</td><td class="text-sm text-muted">Today 13:30</td><td><span class="badge badge-info">Live</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+            <tr data-status="live"><td><p class="fw-600 text-sm">Instagram Caption Pack (10 posts)</p><p class="text-xs text-muted">No revision · Level 1</p></td><td class="text-sm">FashionCo</td><td class="text-sm">Ananya Patel</td><td><span class="badge badge-neutral">Writing</span></td><td class="fw-600 text-accent">₹300</td><td class="text-sm text-muted">Today 09:00</td><td class="text-sm text-muted">Today 12:00</td><td><span class="badge badge-info">Live</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+            <tr data-status="completed"><td><p class="fw-600 text-sm">Logo Design — NexaCore Startup</p><p class="text-xs text-muted">1 revision used</p></td><td class="text-sm">NexaCore</td><td class="text-sm">Raubin Sharma</td><td><span class="badge badge-neutral">Design</span></td><td class="fw-600 text-accent">₹600</td><td class="text-sm text-muted">Jun 5</td><td class="text-sm text-muted">Jun 5</td><td><span class="badge badge-success">Completed</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+            <tr data-status="disputed"><td><p class="fw-600 text-sm">Data Cleanup — 500 Rows</p><p class="text-xs text-muted">Dispute raised</p></td><td class="text-sm">SalesBrand</td><td class="text-sm">Dev Kumar</td><td><span class="badge badge-neutral">Data</span></td><td class="fw-600 text-accent">₹800</td><td class="text-sm text-muted">Jun 4</td><td class="text-sm text-muted">Jun 4</td><td><span class="badge badge-error">Disputed</span></td><td><a href="admin-disputes.html" class="btn btn-danger btn-sm">Resolve</a></td></tr>
+            <tr data-status="completed"><td><p class="fw-600 text-sm">Reels Editing — 3 videos</p><p class="text-xs text-muted">No revision</p></td><td class="text-sm">LifestyleBrand</td><td class="text-sm">Priya Singh</td><td><span class="badge badge-neutral">Video</span></td><td class="fw-600 text-accent">₹900</td><td class="text-sm text-muted">Jun 3</td><td class="text-sm text-muted">Jun 3</td><td><span class="badge badge-success">Completed</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+            <tr data-status="cancelled"><td><p class="fw-600 text-sm">Blog Post — 800 words</p><p class="text-xs text-muted">Client cancelled</p></td><td class="text-sm">EdTechCo</td><td class="text-sm">—</td><td><span class="badge badge-neutral">Writing</span></td><td class="fw-600 text-muted">₹250</td><td class="text-sm text-muted">Jun 2</td><td class="text-sm text-muted">Jun 2</td><td><span class="badge badge-neutral">Cancelled</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+function filterTasks(status, btn) {
+  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#tasksBody tr').forEach(row => {
+    row.style.display = status === 'all' || row.dataset.status === status ? '' : 'none';
+  });
+}
+function searchTasks(q) {
+  document.querySelectorAll('#tasksBody tr').forEach(row => {
+    row.style.display = row.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
+  });
+}
+</script>
+<script src="sidebar.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>

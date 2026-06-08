@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disputes — StryK Admin</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="admin-dashboard.css">
+<link rel="stylesheet" href="admin-sub.css">
+</head>
+<body>
+<script src="preloader.js"></script>
+<script>
+if (!sessionStorage.getItem('stryk_admin_auth')) {
+  window.location.replace('admin-login.html');
+}
+</script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav><span class="admin-badge">Admin</span><div class="avatar" style="background:var(--error-bg);border-color:var(--error);color:var(--error)">AD</div></nav>
+</nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span></div></div>
+<div class="app-layout">
+  <aside class="sidebar">
+    <ul class="sidebar-menu">
+      <li><a href="admin-dashboard.html">Overview</a></li>
+      <li><a href="admin-users.html">Users</a></li>
+      <li><a href="admin-tasks.html">All Tasks</a></li>
+      <li><a href="admin-disputes.html" class="active">Disputes</a></li>
+      <li><a href="admin-transactions.html">Transactions</a></li>
+      <li><a href="admin-reports.html">Reports</a></li>
+      <li><a href="admin-settings.html">Settings</a></li>
+    </ul>
+  </aside>
+  <main class="main-content">
+    <div class="flex-between mb-3">
+      <div>
+        <h1 class="font-head" style="font-size:1.6rem;font-weight:700">Dispute Resolution</h1>
+        <p class="text-muted text-sm">3 open · 2 under review · 18 resolved this month</p>
+      </div>
+      <span class="badge badge-error" style="font-size:13px;padding:6px 14px">3 Require Action</span>
+    </div>
+
+    <!-- Stats -->
+    <div class="stat-grid mb-3" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stat-card" style="border-color:var(--error)"><div class="stat-label">Open</div><div class="stat-value" style="color:var(--error)">3</div><div class="stat-sub">Awaiting review</div></div>
+      <div class="stat-card"><div class="stat-label">Under Review</div><div class="stat-value">2</div><div class="stat-sub">Admin reviewing</div></div>
+      <div class="stat-card stat-accent"><div class="stat-label">Resolved This Month</div><div class="stat-value">18</div><div class="stat-sub">Avg 6h resolution</div></div>
+      <div class="stat-card"><div class="stat-label">Freelancer Wins</div><div class="stat-value">61%</div><div class="stat-sub">vs Client 39%</div></div>
+    </div>
+
+    <!-- Open Disputes -->
+    <h3 class="font-head fw-700 mb-2" style="font-size:1rem;color:var(--error)">Open Disputes</h3>
+    <div class="disputes-list mb-3">
+
+      <div class="dispute-card">
+        <div class="dispute-header">
+          <div>
+            <p class="fw-600">Logo design not matching brief</p>
+            <p class="text-xs text-muted">Task #1042 · Design · ₹800 in escrow · Raised Jun 5</p>
+          </div>
+          <span class="badge badge-error">Open</span>
+        </div>
+        <div class="dispute-parties">
+          <div class="party">
+            <div class="avatar" style="width:28px;height:28px;font-size:11px">AS</div>
+            <div>
+              <p class="text-xs fw-600">Freelancer: @arjun_designs</p>
+              <p class="text-xs text-muted">"I followed the brief exactly. Client changed requirements after submission."</p>
+            </div>
+          </div>
+          <div class="party-vs">VS</div>
+          <div class="party">
+            <div class="avatar" style="width:28px;height:28px;font-size:11px;background:rgba(59,130,246,0.1);border-color:#3B82F6;color:#3B82F6">SC</div>
+            <div>
+              <p class="text-xs fw-600">Client: @startup_co</p>
+              <p class="text-xs text-muted">"The colors and font are completely wrong. Not what I asked for."</p>
+            </div>
+          </div>
+        </div>
+        <div class="dispute-actions">
+          <button class="btn btn-ghost btn-sm">View Submission</button>
+          <button class="btn btn-ghost btn-sm">View Brief</button>
+          <button class="btn btn-primary btn-sm" onclick="resolveDispute(this, 'freelancer')">Freelancer Wins</button>
+          <button class="btn btn-secondary btn-sm" onclick="resolveDispute(this, 'client')">Client Wins</button>
+          <button class="btn btn-ghost btn-sm" onclick="resolveDispute(this, 'split')">Split 50/50</button>
+        </div>
+      </div>
+
+      <div class="dispute-card">
+        <div class="dispute-header">
+          <div>
+            <p class="fw-600">Client refusing to approve complete work</p>
+            <p class="text-xs text-muted">Task #1039 · Writing · ₹400 in escrow · Raised Jun 5</p>
+          </div>
+          <span class="badge badge-error">Open</span>
+        </div>
+        <div class="dispute-parties">
+          <div class="party">
+            <div class="avatar" style="width:28px;height:28px;font-size:11px">WP</div>
+            <div>
+              <p class="text-xs fw-600">Freelancer: @writer_pro</p>
+              <p class="text-xs text-muted">"Delivered 600 words as specified. Client has not responded in 24 hours."</p>
+            </div>
+          </div>
+          <div class="party-vs">VS</div>
+          <div class="party">
+            <div class="avatar" style="width:28px;height:28px;font-size:11px;background:rgba(59,130,246,0.1);border-color:#3B82F6;color:#3B82F6">CB</div>
+            <div>
+              <p class="text-xs fw-600">Client: @content_brand</p>
+              <p class="text-xs text-muted">"Work quality is poor. Needs complete rewrite."</p>
+            </div>
+          </div>
+        </div>
+        <div class="dispute-actions">
+          <button class="btn btn-ghost btn-sm">View Submission</button>
+          <button class="btn btn-primary btn-sm" onclick="resolveDispute(this, 'freelancer')">Freelancer Wins</button>
+          <button class="btn btn-secondary btn-sm" onclick="resolveDispute(this, 'client')">Client Wins</button>
+          <button class="btn btn-ghost btn-sm" onclick="resolveDispute(this, 'split')">Split 50/50</button>
+        </div>
+      </div>
+
+      <div class="dispute-card">
+        <div class="dispute-header">
+          <div>
+            <p class="fw-600">Partial payment dispute — 70% offered by client</p>
+            <p class="text-xs text-muted">Task #1031 · Design · ₹1,200 in escrow · Raised Jun 4</p>
+          </div>
+          <span class="badge badge-warning">Under Review</span>
+        </div>
+        <div class="dispute-parties">
+          <div class="party">
+            <div class="avatar" style="width:28px;height:28px;font-size:11px">DD</div>
+            <div>
+              <p class="text-xs fw-600">Freelancer: @design_dev</p>
+              <p class="text-xs text-muted">"Full task completed. One revision done. Full payment owed."</p>
+            </div>
+          </div>
+          <div class="party-vs">VS</div>
+          <div class="party">
+            <div class="avatar" style="width:28px;height:28px;font-size:11px;background:rgba(59,130,246,0.1);border-color:#3B82F6;color:#3B82F6">FS</div>
+            <div>
+              <p class="text-xs fw-600">Client: @fashion_store</p>
+              <p class="text-xs text-muted">"Will pay 70% as the background color was not exactly right."</p>
+            </div>
+          </div>
+        </div>
+        <div class="dispute-actions">
+          <button class="btn btn-ghost btn-sm">View Submission</button>
+          <button class="btn btn-primary btn-sm" onclick="resolveDispute(this, 'freelancer')">Freelancer Wins</button>
+          <button class="btn btn-secondary btn-sm" onclick="resolveDispute(this, 'client')">Client Wins</button>
+          <button class="btn btn-ghost btn-sm" onclick="resolveDispute(this, 'split')">Split 70/30</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resolved -->
+    <h3 class="font-head fw-700 mb-2" style="font-size:1rem">Recently Resolved</h3>
+    <div class="card" style="padding:0;overflow:hidden">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Task</th><th>Amount</th><th>Winner</th><th>Resolved</th><th>By</th></tr></thead>
+          <tbody>
+            <tr><td class="text-sm">Thumbnail pack x5</td><td class="text-accent fw-600">₹500</td><td><span class="badge badge-info">Freelancer</span></td><td class="text-sm text-muted">Jun 4</td><td class="text-sm text-muted">Admin</td></tr>
+            <tr><td class="text-sm">Voice Over — 2min</td><td class="text-accent fw-600">₹350</td><td><span class="badge badge-accent">Client</span></td><td class="text-sm text-muted">Jun 3</td><td class="text-sm text-muted">Admin</td></tr>
+            <tr><td class="text-sm">Social Media Kit</td><td class="text-accent fw-600">₹750</td><td><span class="badge badge-neutral">Split</span></td><td class="text-sm text-muted">Jun 2</td><td class="text-sm text-muted">Admin</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+function resolveDispute(btn, winner) {
+  const card = btn.closest('.dispute-card');
+  const msgs = { freelancer: 'Freelancer wins — escrow released.', client: 'Client wins — funds refunded.', split: 'Split decision — escrow divided.' };
+  const colors = { freelancer: 'badge-info', client: 'badge-accent', split: 'badge-neutral' };
+  card.querySelector('.badge').className = 'badge ' + colors[winner];
+  card.querySelector('.badge').textContent = 'Resolved';
+  card.querySelector('.dispute-actions').innerHTML = `<span class="text-sm text-muted">${msgs[winner]}</span>`;
+  card.style.opacity = '0.6';
+}
+</script>
+<script src="sidebar.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>

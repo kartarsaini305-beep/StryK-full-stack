@@ -1,0 +1,16 @@
+.level-badge { background: var(--accent-glow); color: var(--accent); padding: 4px 12px; border-radius: 99px; font-size: 13px; font-weight: 600; border: 1px solid rgba(245,158,11,0.3); }
+.profile-layout { display: grid; grid-template-columns: 260px 1fr; gap: 1.5rem; align-items: start; }
+.profile-card { text-align: center; }
+.prof-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--accent-glow); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--accent); margin: 0 auto 12px; }
+.prof-name { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; margin-bottom: 2px; }
+.level-pill { display: inline-block; background: var(--accent-glow); color: var(--accent); border: 1px solid rgba(245,158,11,0.3); padding: 4px 14px; border-radius: 99px; font-size: 13px; font-weight: 600; margin: 10px 0 16px; }
+.prof-stats { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
+.ps-item { display: flex; flex-direction: column; align-items: center; }
+.ps-val { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--text-1); }
+.ps-label { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; }
+.ps-div { width: 1px; background: var(--border); }
+.skills-section { text-align: left; }
+.skills-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-chip { padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: 500; background: var(--surface); border: 1px solid var(--border); color: var(--text-2); cursor: pointer; transition: all 0.15s; }
+.skill-chip.active { background: var(--accent-glow); border-color: var(--accent); color: var(--accent); }
+@media(max-width:900px) { .profile-layout { grid-template-columns: 1fr; } }

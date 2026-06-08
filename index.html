@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel='preconnect' href='https://fonts.googleapis.com'>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StryK — Strike When You're Free</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="index.css">
+<style>
+/* ── ULTRA MODERN INDEX OVERRIDES ── */
+:root {
+  --gold: #F59E0B;
+  --gold-dim: #D97706;
+  --gold-glow: rgba(245,158,11,0.18);
+}
+
+/* VIDEO HERO */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  overflow: hidden;
+}
+.hero-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-video-wrap video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+  filter: grayscale(60%) brightness(0.6);
+}
+.hero-video-wrap .video-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(245,158,11,0.06) 0%, transparent 70%),
+    linear-gradient(to bottom, rgba(8,8,8,0.3) 0%, rgba(8,8,8,0) 30%, rgba(8,8,8,0) 70%, rgba(8,8,8,0.95) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+}
+
+/* ANIMATED BADGE */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid rgba(245,158,11,0.35);
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(245,158,11,0.06);
+  margin-bottom: 2rem;
+  backdrop-filter: blur(8px);
+  animation: badgePulse 3s ease infinite;
+}
+@keyframes badgePulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(245,158,11,0); }
+  50% { box-shadow: 0 0 20px 4px rgba(245,158,11,0.12); }
+}
+/* Live green dot with radiating wave rings */
+.hero-badge .dot {
+  position: relative;
+  width: 10px; height: 10px;
+  background: #22C55E;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(34,197,94,0.8);
+}
+.hero-badge .dot::before,
+.hero-badge .dot::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid rgba(34,197,94,0.6);
+  animation: liveWave 1.8s ease-out infinite;
+}
+.hero-badge .dot::after {
+  animation-delay: 0.9s;
+  border-color: rgba(34,197,94,0.35);
+}
+@keyframes liveWave {
+  0%   { width: 10px; height: 10px; opacity: 1; }
+  100% { width: 32px; height: 32px; opacity: 0; }
+}
+
+/* HERO TITLE */
+.hero-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroReveal 0.8s 0.2s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes heroReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-title .accent-text {
+  color: var(--gold);
+  position: relative;
+  display: inline-block;
+}
+.hero-title .accent-text::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underlineReveal 0.6s 1s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes underlineReveal { to { transform: scaleX(1); } }
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: rgba(255,255,255,0.65);
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+  opacity: 0;
+  animation: heroReveal 0.7s 0.45s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+
+/* HERO CTA */
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: heroReveal 0.6s 0.65s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.btn-cta-primary {
+  padding: 14px 32px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-cta-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(245,158,11,0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+.btn-cta-primary:hover::before { opacity: 1; }
+
+/* Navbar btn overrides — always visible */
+.navbar .btn-primary {
+  background: #fff !important;
+  color: #000 !important;
+  border-color: #fff !important;
+  font-weight: 700;
+}
+.navbar .btn-primary:hover {
+  background: #f0f0f0 !important;
+  transform: translateY(-1px);
+}
+.navbar .btn-ghost {
+  color: rgba(255,255,255,0.8) !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+.navbar .btn-ghost:hover {
+  color: #fff !important;
+  background: rgba(255,255,255,0.08) !important;
+}
+
+.btn-cta-ghost {
+  padding: 14px 28px;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+}
+.btn-cta-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); transform: translateY(-2px); }
+
+/* HERO STATS */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-top: 3.5rem;
+  padding: 1.25rem 2rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  animation: heroReveal 0.6s 0.8s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.hstat { text-align: center; padding: 0 2rem; }
+.hstat-val {
+  display: block;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hstat-label { font-size: 11px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; }
+.hstat-div { width: 1px; height: 40px; background: rgba(255,255,255,0.1); }
+
+/* SCROLL INDICATOR */
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.3);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: heroReveal 0.6s 1.2s ease forwards, scrollBounce 2s 1.8s ease infinite;
+  opacity: 0;
+  z-index: 1;
+}
+@keyframes scrollBounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+.scroll-hint svg { opacity: 0.4; }
+
+/* ── SECTIONS ── */
+.section {
+  padding: 4.5rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-full {
+  padding: 4.5rem 2rem;
+}
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  color: #fff;
+  margin-bottom: 3rem;
+}
+.section-title .accent-text { color: var(--gold); }
+
+/* CATEGORIES */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.cat-card {
+  background: rgba(255,255,255,0.02);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+.cat-card::before {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.cat-card:hover { background: rgba(245,158,11,0.06); }
+.cat-card:hover::before { transform: scaleX(1); }
+.cat-card .cat-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(245,158,11,0.5);
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+.cat-card span {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  transition: color 0.2s;
+}
+.cat-card:hover span { color: var(--gold); }
+
+/* STEPS */
+.section-dark { background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+.steps-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+.step-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.step-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(245,158,11,0.05), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.step-card:hover { border-color: rgba(245,158,11,0.3); transform: translateY(-4px); }
+.step-card:hover::before { opacity: 1; }
+.step-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.7;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.1em;
+}
+.step-card h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.step-card p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+.step-arrow {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: rgba(245,158,11,0.3);
+  flex-shrink: 0;
+}
+
+/* LEVELS */
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.level-card {
+  background: rgba(255,255,255,0.02);
+  padding: 2rem 1.5rem;
+  transition: background 0.25s;
+  position: relative;
+}
+.level-card:hover { background: rgba(255,255,255,0.04); }
+.level-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.level-name {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.level-pay {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.level-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+.level-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: rgba(245,158,11,0.15);
+}
+.level-bar-fill {
+  height: 100%;
+  background: var(--gold);
+  transition: width 1.2s 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.l1 .level-bar-fill { width: 0; }
+.l2 .level-bar-fill { width: 0; }
+.l3 .level-bar-fill { width: 0; }
+.l4 .level-bar-fill { width: 0; }
+.level-card.visible .l1 ~ .level-bar .level-bar-fill,
+.l1.visible .level-bar .level-bar-fill { width: 25%; }
+.l2.visible .level-bar .level-bar-fill { width: 50%; }
+.l3.visible .level-bar .level-bar-fill { width: 75%; }
+.l4.visible .level-bar .level-bar-fill { width: 100%; }
+
+/* CLIENT FEATURES */
+.client-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 1px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+.client-feat {
+  background: rgba(255,255,255,0.02);
+  padding: 2.5rem 2rem;
+  transition: background 0.25s;
+  position: relative;
+}
+.client-feat:hover { background: rgba(245,158,11,0.04); }
+.client-feat h4 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.client-feat p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+.client-feat-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.6;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+/* MARQUEE / LOGO SECTION */
+.marquee-section {
+  padding: 3rem 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.marquee-label {
+  text-align: center;
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  animation: marquee 20s linear infinite;
+  white-space: nowrap;
+}
+.marquee-item {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.12);
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+.marquee-item:hover { color: rgba(255,255,255,0.4); }
+.marquee-dot { color: var(--gold); opacity: 0.3; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* CTA SECTION */
+.cta-section {
+  text-align: center;
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(245,158,11,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  letter-spacing: 0px;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+.cta-title span { color: var(--gold); }
+.cta-sub {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 2.5rem;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* FOOTER */
+.footer {
+  padding: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+}
+.footer a { color: rgba(245,158,11,0.6); text-decoration: none; }
+.footer a:hover { color: var(--gold); }
+
+/* NAVBAR transparent on hero */
+.navbar-transparent {
+  background: transparent !important;
+  border-bottom-color: transparent !important;
+}
+
+@media (max-width: 900px) {
+  .categories-grid, .levels-grid { grid-template-columns: repeat(2,1fr); }
+  .steps-row { grid-template-columns: 1fr; }
+  .step-arrow { display: none; }
+  .client-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; gap: 1rem; }
+  .hstat-div { width: 60px; height: 1px; }
+  .footer { flex-direction: column; gap: 1rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+<script src="preloader.js"></script>
+
+<nav class="navbar" id="mainNav">
+  <a href="index.html" class="logo">
+    <img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+    <span class="logo-text" style="display:none">Str<span>y</span>K</span>
+  </a>
+  <nav>
+    <a href="how-it-works.html">How it works</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="login.html" class="btn btn-ghost btn-sm">Login</a>
+    <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+  </nav>
+</nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span></div></div>
+
+<main>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <!-- VIDEO BG — replace src with your own .mp4 -->
+    <div class="hero-video-wrap">
+      <video autoplay muted loop playsinline src="hero-bg.mp4"></video>
+      <div class="video-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge"><span class="dot"></span> Pre-Beta — Join the Waitlist</div>
+      <h1 class="hero-title">Strike When<br><span class="accent-text">You're Free.</span></h1>
+      <p class="hero-sub">India's fastest micro-task platform. Pick a task, complete it in 2–3 hours, get paid the same day.</p>
+      <div class="hero-cta">
+        <a href="register.html" class="btn-cta-primary">Start Earning Free →</a>
+        <a href="how-it-works.html" class="btn-cta-ghost">See How It Works</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><span class="hstat-val">₹100</span><span class="hstat-label">Min task pay</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-val">Same Day</span><span class="hstat-label">UPI payment</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-val">150+</span><span class="hstat-label">Freelancers</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-val">3 hrs</span><span class="hstat-label">Avg delivery</span></div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <svg width="16" height="20" viewBox="0 0 16 20" fill="none"><rect x="6" y="0" width="4" height="8" rx="2" fill="rgba(255,255,255,0.4)"/><path d="M8 10L4 16H12L8 10Z" fill="rgba(255,255,255,0.2)"/></svg>
+    </div>
+  </section>
+
+  <!-- ── MARQUEE ── -->
+  <div class="marquee-section">
+    <p class="marquee-label">What's on StryK</p>
+    <div class="marquee-track">
+      <span class="marquee-item">Design</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Writing</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Video Editing</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Thumbnails</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Development</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Social Media</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Voice Over</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Data Entry</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Presentations</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Research</span><span class="marquee-dot">·</span>
+      <!-- duplicate for seamless loop -->
+      <span class="marquee-item">Design</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Writing</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Video Editing</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Thumbnails</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Development</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Social Media</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Voice Over</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Data Entry</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Presentations</span><span class="marquee-dot">·</span>
+      <span class="marquee-item">Research</span><span class="marquee-dot">·</span>
+    </div>
+  </div>
+
+  <!-- ── CATEGORIES ── -->
+  <section class="section fade-up">
+    <div class="section-label">Task Categories</div>
+    <h2 class="section-title">Every skill. Every task.</h2>
+    <div class="categories-grid">
+      <div class="cat-card fade-up delay-1"><div class="cat-num">01</div><span>Design</span></div>
+      <div class="cat-card fade-up delay-2"><div class="cat-num">02</div><span>Writing</span></div>
+      <div class="cat-card fade-up delay-3"><div class="cat-num">03</div><span>Video Editing</span></div>
+      <div class="cat-card fade-up delay-4"><div class="cat-num">04</div><span>Development</span></div>
+      <div class="cat-card fade-up delay-1"><div class="cat-num">05</div><span>Data</span></div>
+      <div class="cat-card fade-up delay-2"><div class="cat-num">06</div><span>Social Media</span></div>
+      <div class="cat-card fade-up delay-3"><div class="cat-num">07</div><span>Voice Over</span></div>
+      <div class="cat-card fade-up delay-4"><div class="cat-num">08</div><span>Presentations</span></div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <div class="section-dark">
+    <section class="section">
+      <div class="section-label">The Flow</div>
+      <h2 class="section-title">Paid in <span class="accent-text">3 steps.</span></h2>
+      <div class="steps-row">
+        <div class="step-card fade-up delay-1">
+          <div class="step-num">01</div>
+          <h3>Pick a Task</h3>
+          <p>Browse tasks matching your skill. Book instantly — no applications, no waiting.</p>
+        </div>
+        <div class="step-arrow fade-up">→</div>
+        <div class="step-card fade-up delay-2">
+          <div class="step-num">02</div>
+          <h3>Clarity Window</h3>
+          <p>10 minutes to ask 2 questions. Work starts right after. No confusion.</p>
+        </div>
+        <div class="step-arrow fade-up">→</div>
+        <div class="step-card fade-up delay-3">
+          <div class="step-num">03</div>
+          <h3>Submit & Get Paid</h3>
+          <p>Submit. Client approves. Payment hits your UPI the same day.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── LEVELS ── -->
+  <section class="section fade-up">
+    <div class="section-label">Level System</div>
+    <h2 class="section-title">Grow with every <span class="accent-text">task.</span></h2>
+    <div class="levels-grid">
+      <div class="level-card l1 fade-up delay-1">
+        <div class="level-tag">Level 1</div>
+        <div class="level-name">Beginner</div>
+        <div class="level-pay">₹100 – ₹500</div>
+        <div class="level-desc">Start here. Build your reputation.</div>
+        <div class="level-bar"><div class="level-bar-fill" style="width:25%"></div></div>
+      </div>
+      <div class="level-card l2 fade-up delay-2">
+        <div class="level-tag">Level 2</div>
+        <div class="level-name">Rising</div>
+        <div class="level-pay">₹500 – ₹1,500</div>
+        <div class="level-desc">Consistent ratings unlock better tasks.</div>
+        <div class="level-bar"><div class="level-bar-fill" style="width:50%"></div></div>
+      </div>
+      <div class="level-card l3 fade-up delay-3">
+        <div class="level-tag">Level 3</div>
+        <div class="level-name">Skilled</div>
+        <div class="level-pay">₹1,500 – ₹4,000</div>
+        <div class="level-desc">Complex tasks, higher pay.</div>
+        <div class="level-bar"><div class="level-bar-fill" style="width:75%"></div></div>
+      </div>
+      <div class="level-card l4 fade-up delay-4">
+        <div class="level-tag">Level 4</div>
+        <div class="level-name">Expert</div>
+        <div class="level-pay">₹4,000+</div>
+        <div class="level-desc">Premium clients. Top of the game.</div>
+        <div class="level-bar"><div class="level-bar-fill" style="width:100%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOR CLIENTS ── -->
+  <div class="section-dark">
+    <section class="section">
+      <div class="section-label">For Clients</div>
+      <h2 class="section-title">Get work done <span class="accent-text">today.</span></h2>
+      <div class="client-grid">
+        <div class="client-feat fade-up delay-1">
+          <div class="client-feat-num">01</div>
+          <h4>Instant Booking</h4>
+          <p>Post a task, a freelancer books it within minutes. No waiting for proposals.</p>
+        </div>
+        <div class="client-feat fade-up delay-2">
+          <div class="client-feat-num">02</div>
+          <h4>Escrow Payment</h4>
+          <p>Your money is held safely until you approve the delivered work.</p>
+        </div>
+        <div class="client-feat fade-up delay-3">
+          <div class="client-feat-num">03</div>
+          <h4>One Revision</h4>
+          <p>Not satisfied? One structured revision per task — simple and fair.</p>
+        </div>
+        <div class="client-feat fade-up delay-4">
+          <div class="client-feat-num">04</div>
+          <h4>AI Dispute System</h4>
+          <p>Fair, binding resolution if something goes wrong. No bias.</p>
+        </div>
+      </div>
+      <div style="text-align:center">
+        <a href="register-client.html" class="btn-cta-primary">Post Your First Task →</a>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ── FOR FREELANCERS ── -->
+  <section class="section fade-up">
+    <div class="section-label">For Freelancers</div>
+    <h2 class="section-title">Pick a task. Get paid <span class="accent-text">today.</span></h2>
+    <div class="client-grid">
+      <div class="client-feat fade-up delay-1">
+        <div class="client-feat-num">01</div>
+        <h4>No Applications</h4>
+        <p>Browse open tasks and book instantly. No proposals, no waiting for a client to pick you.</p>
+      </div>
+      <div class="client-feat fade-up delay-2">
+        <div class="client-feat-num">02</div>
+        <h4>Same-Day Pay</h4>
+        <p>Complete the task, get approved, receive UPI payment the same day — no 7-day cycles.</p>
+      </div>
+      <div class="client-feat fade-up delay-3">
+        <div class="client-feat-num">03</div>
+        <h4>Level Up Fast</h4>
+        <p>Every completed task builds your rating. Higher levels unlock better tasks and higher pay.</p>
+      </div>
+      <div class="client-feat fade-up delay-4">
+        <div class="client-feat-num">04</div>
+        <h4>Zero Commission</h4>
+        <p>Pre-beta members keep 100% of their earnings for 6 months. No platform cut at all.</p>
+      </div>
+    </div>
+    <div style="text-align:center">
+      <a href="register.html" class="btn-cta-primary">Join as Freelancer →</a>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section fade-up">
+    <div class="section-label" style="text-align:center">Join StryK</div>
+    <h2 class="cta-title">Ready to<br><span>Strike?</span></h2>
+    <p class="cta-sub">Join India's fastest micro-task platform. Zero commission for 6 months.</p>
+    <div class="hero-cta" style="justify-content:center">
+      <a href="register.html" class="btn-cta-primary">Join as Freelancer →</a>
+      <a href="register-client.html" class="btn-cta-ghost">Hire Talent</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>© 2026 StryK Technologies</span>
+  <div style="display:flex;gap:1.5rem">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="admin-login.html">Admin</a>
+  </div>
+  <span>Built at IIIT Una</span>
+</footer>
+
+<script>
+// Navbar always solid — no transparent
+
+// Magnetic hover on CTA buttons
+document.querySelectorAll('.btn-cta-primary, .btn-cta-ghost').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top - r.height / 2;
+    btn.style.transform = `translate(${x * 0.12}px, ${y * 0.2}px)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+});
+
+// Parallax on hero title
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const content = document.querySelector('.hero-content');
+  if (content && y < window.innerHeight) {
+    content.style.transform = `translateY(${y * 0.25}px)`;
+    content.style.opacity = 1 - y / (window.innerHeight * 0.8);
+  }
+}, { passive: true });
+
+// Custom cursor — ring + dot, highly responsive
+(function() {
+  const ring = document.createElement('div');
+  const dot  = document.createElement('div');
+  ring.id = 'cur-ring';
+  dot.id  = 'cur-dot';
+  ring.style.cssText = 'position:fixed;top:0;left:0;width:32px;height:32px;border:1.5px solid rgba(245,158,11,0.7);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.12s ease,width 0.2s ease,height 0.2s ease,border-color 0.2s ease,opacity 0.2s ease;will-change:transform;';
+  dot.style.cssText  = 'position:fixed;top:0;left:0;width:5px;height:5px;background:#F59E0B;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.04s linear;will-change:transform;';
+  document.body.appendChild(ring);
+  document.body.appendChild(dot);
+
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; }, {passive:true});
+
+  // Ring lags slightly behind for elegant feel
+  (function rafLoop() {
+    rx += (mx - rx) * 0.18;
+    ry += (my - ry) * 0.18;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(rafLoop);
+  })();
+
+  // Hover: ring expands, fills slightly
+  document.querySelectorAll('a,button,.cat-card,.step-card,.level-card,.client-feat,.btn-cta-primary,.btn-cta-ghost').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width  = '52px';
+      ring.style.height = '52px';
+      ring.style.borderColor = '#F59E0B';
+      ring.style.background  = 'rgba(245,158,11,0.06)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width  = '32px';
+      ring.style.height = '32px';
+      ring.style.borderColor = 'rgba(245,158,11,0.7)';
+      ring.style.background  = 'transparent';
+    });
+  });
+
+  // Click: ring shrinks then returns
+  document.addEventListener('mousedown', () => { ring.style.transform = 'translate(-50%,-50%) scale(0.75)'; });
+  document.addEventListener('mouseup',   () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; });
+
+  // Hide when mouse leaves window
+  document.addEventListener('mouseleave', () => { ring.style.opacity='0'; dot.style.opacity='0'; });
+  document.addEventListener('mouseenter', () => { ring.style.opacity='1'; dot.style.opacity='1'; });
+})();
+</script>
+<script src="animations.js"></script>
+</body>
+</html>

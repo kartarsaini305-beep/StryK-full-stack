@@ -1,0 +1,26 @@
+.level-badge { background: var(--accent-glow); color: var(--accent); padding: 4px 12px; border-radius: 99px; font-size: 13px; font-weight: 600; border: 1px solid rgba(245,158,11,0.3); }
+.back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-2); text-decoration: none; font-size: 14px; margin-bottom: 1.5rem; transition: color 0.15s; }
+.back-link:hover { color: var(--text-1); }
+.detail-layout { display: grid; grid-template-columns: 1fr 300px; gap: 1.5rem; align-items: start; }
+.detail-meta-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-bottom: 1rem; }
+.dm-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; }
+.dm-label { display: block; font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+.dm-val { font-weight: 600; font-size: 14px; }
+.dm-val.accent { color: var(--accent); font-family: var(--font-head); font-size: 1.1rem; }
+.section-sub { font-family: var(--font-head); font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.deliverable-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.deliverable-list li { font-size: 14px; color: var(--text-2); padding-left: 1.2rem; position: relative; }
+.deliverable-list li::before { content: '✓'; position: absolute; left: 0; color: var(--success); font-weight: 700; }
+.file-ref { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.file-ref:hover { border-color: var(--accent); }
+.book-panel { position: sticky; top: calc(var(--nav-h) + 1.5rem); }
+.bp-pay { font-family: var(--font-head); font-size: 2.2rem; font-weight: 800; color: var(--accent); }
+.bp-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
+.client-info { display: flex; align-items: center; gap: 10px; }
+.task-cat { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.task-cat.design { background: rgba(167,139,250,0.15); color: #a78bfa; }
+@media(max-width:900px) {
+  .detail-layout { grid-template-columns: 1fr; }
+  .detail-meta-row { grid-template-columns: repeat(2,1fr); }
+  .book-panel { position: static; }
+}

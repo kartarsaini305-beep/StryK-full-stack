@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse Tasks — StryK</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="browse-tasks.css">
+</head>
+<body>
+<script src="auth.js"></script>
+<script>StryKAuth.guard('freelancer');</script>
+<script src="preloader.js"></script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav><span class="level-badge"> Level 1</span><div class="avatar">KS</div></nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span></div></div>
+</nav>
+<div class="app-layout">
+  <aside class="sidebar">
+    <ul class="sidebar-menu">
+      <li><a href="freelancer-dashboard.html"> Dashboard</a></li>
+      <li><a href="browse-tasks.html" class="active"> Browse Tasks</a></li>
+      <li><a href="my-tasks.html"> My Tasks</a></li>
+      <li><a href="wallet.html"> Wallet</a></li>
+      <li><a href="ratings.html"> Ratings</a></li>
+      <li><a href="disputes.html"> Disputes</a></li>
+      <li><a href="profile.html"> Profile</a></li>
+    </ul>
+  </aside>
+  <main class="main-content">
+    <div class="page-header">
+      <h1>Browse Tasks</h1>
+      <p>Tasks available for your level — Level 1 Beginner</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-bar">
+      <div class="filter-cats">
+        <button class="fcat-btn active" onclick="filterCat(this,'all')">All</button>
+        <button class="fcat-btn" onclick="filterCat(this,'design')"> Design</button>
+        <button class="fcat-btn" onclick="filterCat(this,'writing')"> Writing</button>
+        <button class="fcat-btn" onclick="filterCat(this,'video')"> Video</button>
+        <button class="fcat-btn" onclick="filterCat(this,'dev')"> Dev</button>
+        <button class="fcat-btn" onclick="filterCat(this,'data')"> Data</button>
+      </div>
+      <select class="form-select" style="width:auto">
+        <option>Sort: Newest</option>
+        <option>Sort: Pay High-Low</option>
+        <option>Sort: Pay Low-High</option>
+        <option>Sort: Deadline Soon</option>
+      </select>
+    </div>
+
+    <!-- Task Cards Grid -->
+    <div class="tasks-grid" id="tasksGrid">
+      <div class="task-card cat-design" onclick="window.location='task-detail.html'">
+        <div class="tc-top"><span class="task-cat design">Design</span><span class="tc-pay">₹350</span></div>
+        <h3 class="tc-title">Instagram Post for Fashion Brand</h3>
+        <p class="tc-desc">3 Instagram posts in brand style. Reference images provided. Canva or Photoshop.</p>
+        <div class="tc-meta"><span> 2 hrs</span><span> Today 8PM</span><span> Open</span></div>
+        <button class="btn btn-primary btn-sm btn-full mt-2">Book This Task</button>
+      </div>
+      <div class="task-card cat-writing" onclick="window.location='task-detail.html'">
+        <div class="tc-top"><span class="task-cat writing">Writing</span><span class="tc-pay">₹200</span></div>
+        <h3 class="tc-title">5 Product Descriptions for E-commerce</h3>
+        <p class="tc-desc">Write compelling product descriptions for 5 items. Each 80–100 words. References given.</p>
+        <div class="tc-meta"><span> 1.5 hrs</span><span> Tomorrow</span><span> Open</span></div>
+        <button class="btn btn-primary btn-sm btn-full mt-2">Book This Task</button>
+      </div>
+      <div class="task-card cat-data" onclick="window.location='task-detail.html'">
+        <div class="tc-top"><span class="task-cat data">Data</span><span class="tc-pay">₹300</span></div>
+        <h3 class="tc-title">Spreadsheet Data Cleanup (100 rows)</h3>
+        <p class="tc-desc">Clean and format Excel file. Remove duplicates, fix formatting, fill missing fields.</p>
+        <div class="tc-meta"><span> 2 hrs</span><span> Today 10PM</span><span> Open</span></div>
+        <button class="btn btn-primary btn-sm btn-full mt-2">Book This Task</button>
+      </div>
+      <div class="task-card cat-design" onclick="window.location='task-detail.html'">
+        <div class="tc-top"><span class="task-cat design">Design</span><span class="tc-pay">₹450</span></div>
+        <h3 class="tc-title">YouTube Thumbnail — Tech Review</h3>
+        <p class="tc-desc">Eye-catching thumbnail for tech product review video. Bold text, product image provided.</p>
+        <div class="tc-meta"><span> 1.5 hrs</span><span> Today 7PM</span><span> Open</span></div>
+        <button class="btn btn-primary btn-sm btn-full mt-2">Book This Task</button>
+      </div>
+      <div class="task-card cat-writing" onclick="window.location='task-detail.html'">
+        <div class="tc-top"><span class="task-cat writing">Writing</span><span class="tc-pay">₹250</span></div>
+        <h3 class="tc-title">10 Instagram Captions for Food Brand</h3>
+        <p class="tc-desc">Creative, engaging captions with relevant hashtags. Tone: fun and youthful.</p>
+        <div class="tc-meta"><span> 1 hr</span><span> Tomorrow</span><span> Open</span></div>
+        <button class="btn btn-primary btn-sm btn-full mt-2">Book This Task</button>
+      </div>
+      <div class="task-card cat-data" onclick="window.location='task-detail.html'">
+        <div class="tc-top"><span class="task-cat data">Data</span><span class="tc-pay">₹180</span></div>
+        <h3 class="tc-title">Research 50 Startup Websites</h3>
+        <p class="tc-desc">Find and compile details of 50 Indian startups into a spreadsheet. Template provided.</p>
+        <div class="tc-meta"><span> 2.5 hrs</span><span> Tomorrow</span><span> Open</span></div>
+        <button class="btn btn-primary btn-sm btn-full mt-2">Book This Task</button>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+function filterCat(btn, cat) {
+  document.querySelectorAll('.fcat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.task-card').forEach(c => {
+    if (cat === 'all' || c.classList.contains('cat-' + cat)) c.style.display = '';
+    else c.style.display = 'none';
+  });
+}
+</script>
+<script src="sidebar.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>

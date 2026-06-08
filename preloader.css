@@ -1,0 +1,125 @@
+/* ─── PRELOADER ─────────────────────────── */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #080808;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#preloader::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Radial amber glow behind logo */
+#preloader::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 65%);
+  animation: glowPulse 2s ease infinite;
+}
+@keyframes glowPulse {
+  0%,100% { transform: scale(1); opacity: 0.6; }
+  50%      { transform: scale(1.15); opacity: 1; }
+}
+
+/* ── Logo ── */
+.pl-logo-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* First-visit: logo grows FROM TINY TO BIG — dramatic entrance */
+.pl-logo {
+  width: 220px;
+  height: auto;
+  opacity: 0;
+  transform: scale(0.08);
+  filter: blur(4px);
+  animation: dramaticGrow 1.1s 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes dramaticGrow {
+  0%   { opacity: 0; transform: scale(0.08); filter: blur(4px); }
+  30%  { opacity: 1; filter: blur(0px); }
+  85%  { transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0px); }
+}
+
+/* Fallback text */
+.pl-logo-text {
+  font-family: 'Sora', sans-serif;
+  font-size: 5rem;
+  font-weight: 800;
+  letter-spacing: -3px;
+  color: #fff;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(0.08);
+  filter: blur(4px);
+  animation: dramaticGrow 1.1s 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.pl-logo-text span { color: #F59E0B; }
+
+/* ── Progress bar ── */
+.pl-progress-wrap {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.05);
+}
+.pl-progress-bar {
+  height: 100%;
+  width: 0;
+  background: #F59E0B;
+  animation: progressFill 1.5s 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes progressFill { to { width: 100%; } }
+
+/* ── Exit: logo zooms through screen ── */
+#preloader.exit {
+  animation: preloaderExit 0.55s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+#preloader.exit .pl-logo,
+#preloader.exit .pl-logo-text {
+  animation: logoExit 0.45s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+@keyframes logoExit {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; filter: blur(6px); }
+}
+@keyframes preloaderExit {
+  0%   { opacity: 1; }
+  100% { opacity: 0; pointer-events: none; }
+}
+
+/* ── Other pages: quick small-to-big pop ── */
+#preloader.quick-load .pl-logo,
+#preloader.quick-load .pl-logo-text {
+  animation: quickGrow 0.55s 0.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes quickGrow {
+  0%   { opacity: 0; transform: scale(0.15); filter: blur(2px); }
+  70%  { transform: scale(1.05); filter: blur(0); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ── Page visibility ── */
+body.preloading > *:not(#preloader) { opacity: 0; }
+body.page-ready > *:not(#preloader) {
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}

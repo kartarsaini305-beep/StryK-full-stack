@@ -1,0 +1,21 @@
+.level-badge { background: var(--accent-glow); color: var(--accent); padding: 4px 12px; border-radius: 99px; font-size: 13px; font-weight: 600; border: 1px solid rgba(245,158,11,0.3); }
+.balance-card {
+  background: linear-gradient(135deg, #1a1400 0%, #2d2000 50%, #1a1000 100%);
+  border: 1px solid rgba(245,158,11,0.4);
+  border-radius: var(--radius-xl); padding: 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; overflow: hidden;
+}
+.balance-card::before {
+  content: '₹'; position: absolute; right: -20px; top: -30px;
+  font-family: var(--font-head); font-size: 10rem; font-weight: 800;
+  color: rgba(245,158,11,0.05); line-height: 1;
+}
+.bc-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+.bc-amount { font-family: var(--font-head); font-size: 3rem; font-weight: 800; color: var(--accent); line-height: 1; }
+.btn-withdraw { background: var(--accent); color: #000; font-weight: 700; padding: 12px 24px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-size: 15px; font-family: var(--font-body); transition: all 0.2s; }
+.btn-withdraw:hover { background: var(--accent-dim); transform: translateY(-1px); }
+.pending-row { display: flex; align-items: center; justify-content: space-between; background: var(--warning-bg); border: 1px solid rgba(245,158,11,0.2); border-radius: var(--radius-sm); padding: 12px 14px; }
+.hidden { display: none !important; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 200; padding: 1rem; }
+.modal-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 2rem; width: 100%; max-width: 420px; }

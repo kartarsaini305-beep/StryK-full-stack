@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — StryK</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="pricing.css">
+</head>
+<body>
+<script src="preloader.js"></script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav>
+    <a href="how-it-works.html">How it works</a>
+    <a href="pricing.html" class="active">Pricing</a>
+    <a href="login.html" class="btn btn-ghost btn-sm">Login</a>
+    <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+  </nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span></div></div>
+</nav>
+<main class="page-body pricing-page">
+
+  <div class="pricing-hero">
+    <div class="section-label">Simple Pricing</div>
+    <h1>Transparent. No surprises.</h1>
+    <p>Free for freelancers to join. Clients pay a small monthly subscription. Platform earns only when tasks complete.</p>
+  </div>
+
+  <!-- Toggle: Freelancer / Client -->
+  <div class="hiw-toggle-wrap mb-4">
+    <div class="hiw-toggle">
+      <button class="ht-btn active" id="btn-fl" onclick="showPricing('fl')">Freelancer</button>
+      <button class="ht-btn" id="btn-cl" onclick="showPricing('cl')">Client</button>
+    </div>
+  </div>
+
+  <!-- Freelancer Pricing -->
+  <div id="p-fl">
+    <div class="freelancer-pricing card">
+      <div class="fp-left">
+        <div class="fp-free">Free to Join</div>
+        <h2>12% commission per task</h2>
+        <p>That's it. No monthly fee. No sign-up cost. You only pay when you earn.</p>
+        <ul class="feature-list">
+          <li> Instant task booking</li>
+          <li> 5–10 min Clarity Window</li>
+          <li> Same-day UPI payment</li>
+          <li> Level up system</li>
+          <li> Dispute protection</li>
+        </ul>
+        <a href="register.html" class="btn btn-primary btn-lg mt-3">Start Earning Free →</a>
+      </div>
+      <div class="fp-right">
+        <h3 class="font-head fw-700 mb-3">Earnings Example</h3>
+        <div class="earn-table">
+          <div class="et-header">
+            <span>Task Pay</span><span>Fee (12%)</span><span class="text-accent">You Get</span>
+          </div>
+          <div class="et-row"><span>₹200</span><span class="text-muted">-₹24</span><span class="text-accent fw-600">₹176</span></div>
+          <div class="et-row"><span>₹500</span><span class="text-muted">-₹60</span><span class="text-accent fw-600">₹440</span></div>
+          <div class="et-row"><span>₹1,000</span><span class="text-muted">-₹120</span><span class="text-accent fw-600">₹880</span></div>
+          <div class="et-row"><span>₹5,000/mo</span><span class="text-muted">-₹600</span><span class="text-accent fw-600">₹4,400</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client Pricing -->
+  <div id="p-cl" class="hidden">
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">₹0<span>/month</span></div>
+        <div class="plan-limit">3 tasks per month</div>
+        <ul class="plan-features">
+          <li> Post up to 3 tasks</li>
+          <li> All task categories</li>
+          <li> Escrow payment</li>
+          <li> Clarity window</li>
+          <li> Priority support</li>
+        </ul>
+        <a href="register.html" class="btn btn-secondary btn-full mt-3">Get Started Free</a>
+      </div>
+      <div class="plan-card plan-popular">
+        <div class="popular-tag">Most Popular</div>
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">₹99<span>/month</span></div>
+        <div class="plan-limit">15 tasks per month</div>
+        <ul class="plan-features">
+          <li> Post up to 15 tasks</li>
+          <li> All task categories</li>
+          <li> Escrow payment</li>
+          <li> Clarity window</li>
+          <li> Email support</li>
+        </ul>
+        <a href="register.html" class="btn btn-primary btn-full mt-3">Start for ₹99 →</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">₹199<span>/month</span></div>
+        <div class="plan-limit">Unlimited tasks</div>
+        <ul class="plan-features">
+          <li> Unlimited tasks</li>
+          <li> All task categories</li>
+          <li> Escrow payment</li>
+          <li> Clarity window</li>
+          <li> Priority support</li>
+        </ul>
+        <a href="register.html" class="btn btn-outline btn-full mt-3">Go Pro →</a>
+      </div>
+    </div>
+    <p class="text-center text-muted text-sm mt-3">No commission charged to clients. 12% fee is on freelancer side only.</p>
+  </div>
+
+  <!-- Task Price Ranges -->
+  <div class="level-table-wrap mt-4">
+    <h2 class="font-head fw-700 mb-3" style="text-align:center">Task Price Ranges by Level</h2>
+    <div class="card table-wrap">
+      <table>
+        <thead><tr><th>Level</th><th>Title</th><th>Task Type</th><th>Price Range</th></tr></thead>
+        <tbody>
+          <tr><td>Level 1</td><td>Beginner</td><td>Simple, well-defined tasks</td><td class="fw-600 text-accent">₹100 – ₹500</td></tr>
+          <tr><td>Level 2</td><td>Rising</td><td>Standard tasks, moderate complexity</td><td class="fw-600 text-accent">₹500 – ₹1,500</td></tr>
+          <tr><td>Level 3</td><td>Skilled</td><td>Complex tasks requiring expertise</td><td class="fw-600 text-accent">₹1,500 – ₹4,000</td></tr>
+          <tr><td>Level 4</td><td>Expert</td><td>Premium tasks, highest quality</td><td class="fw-600 text-accent">₹4,000+</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+<footer class="footer"><p>© 2026 StryK Technologies · Built with  at IIIT Una</p></footer>
+<script>
+function showPricing(r) {
+  document.getElementById('p-fl').classList.toggle('hidden', r !== 'fl');
+  document.getElementById('p-cl').classList.toggle('hidden', r !== 'cl');
+  document.getElementById('btn-fl').classList.toggle('active', r === 'fl');
+  document.getElementById('btn-cl').classList.toggle('active', r === 'cl');
+}
+</script>
+<script src="animations.js"></script>
+</body>
+</html>

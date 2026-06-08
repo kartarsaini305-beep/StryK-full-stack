@@ -1,0 +1,213 @@
+/* ─── HERO ─────────────────────────────────── */
+.hero {
+  min-height: calc(100vh - var(--nav-h));
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--text-2); font-size: 13px; font-weight: 500;
+  padding: 6px 14px; border-radius: 99px;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.5s ease both;
+}
+.dot {
+  width: 6px; height: 6px; background: var(--success);
+  border-radius: 50%; animation: pulse 2s ease infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800; line-height: 1.05;
+  letter-spacing: -2px;
+  color: var(--text-1);
+  animation: fadeUp 0.5s 0.1s ease both;
+}
+.accent-text { color: var(--accent); }
+.hero-sub {
+  max-width: 560px; margin: 1.5rem auto;
+  color: var(--text-2); font-size: 1.05rem; line-height: 1.7;
+  animation: fadeUp 0.5s 0.2s ease both;
+}
+.hero-cta {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 0.5s 0.3s ease both;
+}
+.hero-stats {
+  display: flex; align-items: center; gap: 2rem;
+  margin-top: 3rem;
+  animation: fadeUp 0.5s 0.4s ease both;
+}
+.hstat { display: flex; flex-direction: column; align-items: center; }
+.hstat-val { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+.hstat-label { font-size: 12px; color: var(--text-3); }
+.hstat-div { width: 1px; height: 32px; background: var(--border); }
+
+/* ─── SECTIONS ────────────────────────────── */
+.section { padding: 5rem 4rem; max-width: 1100px; margin: 0 auto; }
+.section-dark { max-width: 100%; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.section-dark .section { max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+.section-title { font-family: var(--font-head); font-size: 2.2rem; font-weight: 700; margin-bottom: 2.5rem; letter-spacing: -0.5px; }
+
+/* ─── CATEGORIES ──────────────────────────── */
+.categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.cat-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.cat-card span { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text-2); letter-spacing: 0.02em; text-transform: uppercase; }
+.cat-card:hover { border-color: var(--accent); background: var(--accent-glow); transform: translateY(-3px); }
+.cat-card:hover span { color: var(--accent); }
+
+/* ─── STEPS ───────────────────────────────── */
+.steps-row { display: flex; align-items: center; gap: 1.5rem; }
+.step-card {
+  flex: 1; background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2rem;
+}
+.step-num { font-family: var(--font-head); font-size: 2.5rem; font-weight: 800; color: var(--accent); opacity: 0.5; margin-bottom: 0.5rem; }
+.step-card h3 { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.step-card p { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+.step-arrow { font-size: 1.5rem; color: var(--text-3); flex-shrink: 0; }
+
+/* ─── LEVELS ──────────────────────────────── */
+.levels-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+.level-card {
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  border: 1px solid var(--border);
+  transition: transform 0.2s;
+}
+.level-card:hover { transform: translateY(-3px); }
+.level-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.level-name { font-family: var(--font-head); font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; }
+.level-pay { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+.level-desc { font-size: 13px; color: var(--text-2); }
+.l1 { background: rgba(88,88,88,0.1); border-color: #444; }
+.l1 .level-tag,.l1 .level-pay { color: #888; }
+.l2 { background: rgba(59,130,246,0.07); border-color: rgba(59,130,246,0.3); }
+.l2 .level-tag,.l2 .level-pay { color: var(--info); }
+.l3 { background: rgba(245,158,11,0.07); border-color: rgba(245,158,11,0.3); }
+.l3 .level-tag,.l3 .level-pay { color: var(--accent); }
+.l4 { background: rgba(16,185,129,0.07); border-color: rgba(16,185,129,0.3); }
+.l4 .level-tag,.l4 .level-pay { color: var(--success); }
+
+/* ─── CLIENT FEATURES ─────────────────────── */
+.client-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+.client-feat { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; }
+.cf-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+.client-feat h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.client-feat p { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+
+/* ─── CTA SECTION ─────────────────────────── */
+.cta-section { text-align: center; padding: 6rem 2rem; }
+.cta-title { font-family: var(--font-head); font-size: 3rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; }
+.cta-sub { color: var(--text-2); font-size: 1.1rem; margin-bottom: 2rem; }
+
+@media (max-width: 768px) {
+  .categories-grid { grid-template-columns: repeat(2,1fr); }
+  .levels-grid { grid-template-columns: repeat(2,1fr); }
+  .client-grid { grid-template-columns: repeat(2,1fr); }
+  .steps-row { flex-direction: column; }
+  .step-arrow { transform: rotate(90deg); }
+  .section { padding: 3rem 1.5rem; }
+  .hero-stats { gap: 1rem; }
+}
+
+/* ─── HERO ACCENT LINE ───────────────────── */
+.hero-title .accent-text {
+  position: relative;
+  display: inline-block;
+}
+.hero-title .accent-text::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.accent-underline-ready .hero-title .accent-text::after {
+  transform: scaleX(1);
+}
+
+/* ─── SECTION HEADING ANIMATION ─────────── */
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+/* ─── CAT CARD HOVER ─────────────────────── */
+.cat-card {
+  position: relative;
+  overflow: hidden;
+}
+.cat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent-glow);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.cat-card:hover::before { opacity: 1; }
+
+/* ─── STEP CARD CONNECTOR ────────────────── */
+.step-arrow {
+  font-size: 1.2rem;
+  color: var(--accent);
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+/* ─── LEVEL CARD HOVER BAR ───────────────── */
+.level-card {
+  position: relative;
+  overflow: hidden;
+}
+.level-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.level-card:hover::before { opacity: 1; }
+
+/* ─── CTA SECTION GLOW ───────────────────── */
+.cta-section {
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -150px; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(245,158,11,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}

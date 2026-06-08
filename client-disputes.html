@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disputes — StryK Client</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+</head>
+<body>
+<script src="auth.js"></script>
+<script>StryKAuth.guard('client');</script>
+<script src="preloader.js"></script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav>
+    <span class="plan-badge">Client</span>
+    <div class="avatar" style="background:rgba(59,130,246,0.1);border-color:#3B82F6;color:#3B82F6;cursor:pointer" onclick="window.location='client-profile.html'">YC</div>
+  </nav>
+</nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Escrow Protection</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Fair Dispute System</span><span class="ticker-item"><span class="ticker-dot"></span>One Revision Per Task</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Admin Review in 24hrs</span><span class="ticker-item"><span class="ticker-dot"></span>Escrow Protection</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Fair Dispute System</span><span class="ticker-item"><span class="ticker-dot"></span>One Revision Per Task</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Admin Review in 24hrs</span></div></div>
+
+<div class="app-layout">
+  <aside class="sidebar">
+        <ul class="sidebar-menu">
+      <li><a href="client-dashboard.html">Dashboard</a></li>
+      <li><a href="post-task.html">Post Task</a></li>
+      <li><a href="client-my-tasks.html">My Tasks</a></li>
+      <li><a href="task-review.html">Review Work</a></li>
+      <li><a href="client-wallet.html">Wallet</a></li>
+      <li><a href="client-disputes.html" class="active">Disputes</a></li>
+      <li><a href="client-ratings.html">My Ratings</a></li>
+      <li><a href="client-profile.html">Profile</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+
+    <div class="page-header">
+      <h1>Disputes</h1>
+      <p>Raise a dispute if delivered work doesn't match what you paid for</p>
+    </div>
+
+    <!-- How it works banner -->
+    <div class="card mb-3" style="background:rgba(59,130,246,0.05);border-color:rgba(59,130,246,0.2)">
+      <p class="fw-600 text-sm mb-1" style="color:#3B82F6">How disputes work on StryK</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:12px">
+        <div style="text-align:center">
+          <div style="font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:rgba(59,130,246,0.5);margin-bottom:4px">01</div>
+          <p class="text-xs fw-600" style="color:#3B82F6">Use free revision first</p>
+          <p class="text-xs text-muted mt-1">You get one free revision per task before a dispute can be raised</p>
+        </div>
+        <div style="text-align:center">
+          <div style="font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:rgba(59,130,246,0.5);margin-bottom:4px">02</div>
+          <p class="text-xs fw-600" style="color:#3B82F6">Still not satisfied?</p>
+          <p class="text-xs text-muted mt-1">Fill the dispute form — describe what was agreed vs what was delivered</p>
+        </div>
+        <div style="text-align:center">
+          <div style="font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:rgba(59,130,246,0.5);margin-bottom:4px">03</div>
+          <p class="text-xs fw-600" style="color:#3B82F6">Admin reviews both sides</p>
+          <p class="text-xs text-muted mt-1">StryK team compares the brief vs delivery. Both parties are heard</p>
+        </div>
+        <div style="text-align:center">
+          <div style="font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;color:rgba(59,130,246,0.5);margin-bottom:4px">04</div>
+          <p class="text-xs fw-600" style="color:#3B82F6">Final binding decision</p>
+          <p class="text-xs text-muted mt-1">0–100% of escrow released based on decision. Cannot be appealed</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active disputes needing action -->
+    <div id="actionNeeded" class="mb-3">
+      <h3 class="font-head fw-700 mb-2" style="font-size:1rem">Awaiting Your Review</h3>
+
+      <div class="card mb-2" style="border-color:rgba(245,158,11,0.35)">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+          <div>
+            <p class="fw-600">Logo Design — NexaBrand</p>
+            <p class="text-xs text-muted mt-1">Task #1042 &nbsp;·&nbsp; ₹600 in escrow &nbsp;·&nbsp; Freelancer: @raubin_design &nbsp;·&nbsp; Submitted: 1hr ago</p>
+          </div>
+          <span class="badge badge-warning">Work Submitted</span>
+        </div>
+        <div style="background:var(--surface);border-radius:8px;padding:12px;margin:12px 0;font-size:13px;color:var(--text-2)">
+          Freelancer note: "Delivered the logo in 3 color variants as discussed. SVG and PNG both included."
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a href="task-review.html" class="btn btn-primary btn-sm">Review Submission</a>
+          <button class="btn btn-ghost btn-sm" onclick="requestRevision(this)">Request Revision</button>
+          <button class="btn btn-ghost btn-sm" onclick="showDisputeForm('logo-1042')">Raise Dispute</button>
+          <button class="btn btn-ghost btn-sm" onclick="proposePartial('logo-1042')">Propose Partial Pay</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Raise Dispute Form (hidden by default) -->
+    <div id="disputeFormWrap" class="card mb-3 hidden">
+      <div class="flex-between mb-3">
+        <h3 class="font-head fw-700" style="font-size:1rem">Raise a Dispute</h3>
+        <button class="btn btn-ghost btn-sm" onclick="hideDisputeForm()">Cancel</button>
+      </div>
+
+      <div id="disputeTaskInfo" class="alert alert-warning mb-3"></div>
+
+      <div style="display:flex;flex-direction:column;gap:1rem">
+
+        <div class="form-group">
+          <label class="form-label">Did you use your free revision?</label>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;padding:10px 14px;border:1px solid var(--border);border-radius:8px;transition:all 0.15s" id="rev-yes-lbl">
+              <input type="radio" name="revUsed" value="yes" style="accent-color:var(--accent)" onchange="checkRevision(this)"> Yes — revision was still unsatisfactory
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;padding:10px 14px;border:1px solid var(--border);border-radius:8px;transition:all 0.15s" id="rev-no-lbl">
+              <input type="radio" name="revUsed" value="no" style="accent-color:var(--accent)" onchange="checkRevision(this)"> No — I haven't used revision yet
+            </label>
+          </div>
+          <div id="revWarning" class="alert alert-warning mt-2 hidden">
+            You should request a revision first. Disputes can only be raised after the one free revision has been used or if the revision was also unsatisfactory.
+            <br><button class="btn btn-ghost btn-sm mt-1" onclick="hideDisputeForm()">Request revision instead</button>
+          </div>
+        </div>
+
+        <div id="disputeFields" class="hidden" style="display:flex;flex-direction:column;gap:1rem">
+          <div class="form-group">
+            <label class="form-label">What did you originally ask for? (from your brief)</label>
+            <textarea class="form-textarea" id="clientBrief" rows="3" placeholder="e.g. A minimalist logo with blue and white, modern sans-serif font, 3 variations — dark, light, and icon-only..."></textarea>
+            <span class="form-hint">Be specific. Admin will compare this against the submitted work.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">What was wrong with the delivery?</label>
+            <textarea class="form-textarea" id="clientComplaint" rows="3" placeholder="e.g. Colors are green/yellow instead of blue/white. Font is decorative, not sans-serif. Only one variation provided, not three..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">What outcome are you requesting?</label>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+              <label class="outcome-opt" id="out-full">
+                <input type="radio" name="outcome" value="full_refund" style="display:none">
+                <span class="outcome-title">Full Refund</span>
+                <span class="outcome-desc">Work doesn't match brief at all</span>
+              </label>
+              <label class="outcome-opt" id="out-partial">
+                <input type="radio" name="outcome" value="partial" style="display:none">
+                <span class="outcome-title">Partial Pay</span>
+                <span class="outcome-desc">Work was partially done correctly</span>
+              </label>
+              <label class="outcome-opt selected" id="out-admin">
+                <input type="radio" name="outcome" value="admin_decide" style="display:none" checked>
+                <span class="outcome-title">Let Admin Decide</span>
+                <span class="outcome-desc">Fair review by StryK team</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" id="partialPctWrap" style="display:none">
+            <label class="form-label">Partial payment % you'd accept</label>
+            <div style="display:flex;align-items:center;gap:12px">
+              <input type="range" id="partialRange" min="0" max="90" value="50" step="10" style="flex:1;accent-color:var(--accent)" oninput="updatePct(this.value)">
+              <span id="pctDisplay" class="fw-600 text-accent" style="width:40px">50%</span>
+            </div>
+            <span class="form-hint">Admin may adjust this. 0% = full refund, 90% = mostly pay freelancer.</span>
+          </div>
+
+          <button class="btn btn-danger" onclick="submitDispute()">Submit Dispute</button>
+          <p class="form-hint">Disputes are reviewed within 24 hours. Decision is final and binding. Escrow remains frozen until resolved.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Partial payment proposal form -->
+    <div id="partialFormWrap" class="card mb-3 hidden">
+      <div class="flex-between mb-3">
+        <h3 class="font-head fw-700" style="font-size:1rem">Propose Partial Payment</h3>
+        <button class="btn btn-ghost btn-sm" onclick="hidePartialForm()">Cancel</button>
+      </div>
+      <p class="text-sm text-muted mb-3">As per platform rules, if you're still not satisfied after the revision, you may propose a partial payment. The freelancer can accept or raise a dispute.</p>
+      <div class="form-group mb-2">
+        <label class="form-label">Payment % to release to freelancer</label>
+        <div style="display:flex;align-items:center;gap:12px">
+          <input type="range" id="propRange" min="0" max="100" value="70" step="10" style="flex:1;accent-color:var(--accent)" oninput="updatePropPct(this.value)">
+          <span id="propPctDisplay" class="fw-600 text-accent" style="width:40px">70%</span>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label class="form-label">Reason (will be shown to freelancer)</label>
+        <textarea class="form-textarea" rows="2" placeholder="e.g. Work was partially completed — color was correct but font was wrong..."></textarea>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary" onclick="sendPartialProposal()">Send Proposal to Freelancer</button>
+        <button class="btn btn-ghost" onclick="hidePartialForm()">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Open disputes -->
+    <h3 class="font-head fw-700 mb-2" style="font-size:1rem">Open Disputes</h3>
+    <div id="openDisputes" class="mb-3">
+      <div class="card" style="border-color:rgba(239,68,68,0.3)">
+        <div class="flex-between mb-2">
+          <div>
+            <p class="fw-600">Spreadsheet Cleanup — 500 rows</p>
+            <p class="text-xs text-muted mt-1">Task #1031 &nbsp;·&nbsp; ₹800 in escrow &nbsp;·&nbsp; Raised Jun 5</p>
+          </div>
+          <span class="badge badge-warning">Under Admin Review</span>
+        </div>
+        <div style="background:var(--surface);border-radius:8px;padding:10px 12px;margin-bottom:10px">
+          <p class="text-xs text-muted">Your complaint:</p>
+          <p class="text-sm mt-1">Only ~200 of 500 rows were cleaned. Many duplicate entries and formatting issues remain in the file. Brief clearly specified all 500 rows.</p>
+        </div>
+        <div style="background:var(--surface);border-radius:8px;padding:10px 12px;margin-bottom:10px">
+          <p class="text-xs text-muted">Freelancer's response:</p>
+          <p class="text-sm mt-1">I cleaned all rows that had issues. The other 300 rows were already formatted correctly and didn't need changes.</p>
+        </div>
+        <p class="text-xs text-muted">Admin decision expected within 18 hours. Escrow frozen until resolved.</p>
+      </div>
+    </div>
+
+    <!-- Resolved disputes -->
+    <h3 class="font-head fw-700 mb-2" style="font-size:1rem">Resolved Disputes</h3>
+    <div class="card" style="padding:0;overflow:hidden">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Task</th><th>Amount</th><th>Outcome</th><th>You received</th><th>Date</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-sm">Instagram Caption Pack</td>
+              <td class="fw-600">₹250</td>
+              <td><span class="badge badge-success">Decided in your favour</span></td>
+              <td class="text-accent fw-600">+ ₹250 refunded</td>
+              <td class="text-xs text-muted">Jun 3</td>
+            </tr>
+            <tr>
+              <td class="text-sm">Brand Logo v2</td>
+              <td class="fw-600">₹500</td>
+              <td><span class="badge badge-info">Decided for freelancer</span></td>
+              <td class="text-muted text-sm">No refund</td>
+              <td class="text-xs text-muted">May 28</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<style>
+.outcome-opt {
+  display:flex; flex-direction:column; align-items:flex-start; gap:4px;
+  padding:12px; border:1px solid var(--border); border-radius:var(--radius);
+  cursor:pointer; transition:all 0.15s;
+}
+.outcome-opt:hover { border-color:var(--border-light); background:var(--card-hover); }
+.outcome-opt.selected { border-color:var(--accent); background:var(--accent-glow); }
+.outcome-opt.selected .outcome-title { color:var(--accent); }
+.outcome-title { font-size:13px; font-weight:600; color:var(--text-1); }
+.outcome-desc { font-size:11px; color:var(--text-3); }
+</style>
+
+<script>
+var activeTask = null;
+
+function showDisputeForm(taskId) {
+  activeTask = taskId;
+  document.getElementById('disputeFormWrap').classList.remove('hidden');
+  document.getElementById('partialFormWrap').classList.add('hidden');
+  document.getElementById('disputeTaskInfo').textContent = 'Raising dispute for: Logo Design — NexaBrand (₹600 in escrow)';
+  document.getElementById('disputeFormWrap').scrollIntoView({behavior:'smooth', block:'start'});
+}
+function hideDisputeForm() {
+  document.getElementById('disputeFormWrap').classList.add('hidden');
+}
+function proposePartial(taskId) {
+  activeTask = taskId;
+  document.getElementById('partialFormWrap').classList.remove('hidden');
+  document.getElementById('disputeFormWrap').classList.add('hidden');
+  document.getElementById('partialFormWrap').scrollIntoView({behavior:'smooth', block:'start'});
+}
+function hidePartialForm() {
+  document.getElementById('partialFormWrap').classList.add('hidden');
+}
+function checkRevision(inp) {
+  const isNo = inp.value === 'no';
+  document.getElementById('revWarning').classList.toggle('hidden', !isNo);
+  document.getElementById('disputeFields').classList.toggle('hidden', isNo);
+  document.getElementById('disputeFields').style.display = isNo ? 'none' : 'flex';
+}
+function selectOutcome(el, type) {
+  document.querySelectorAll('.outcome-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('partialPctWrap').style.display = type === 'partial' ? 'block' : 'none';
+}
+// Make outcome cards clickable
+document.querySelectorAll('.outcome-opt').forEach(opt => {
+  opt.addEventListener('click', function() {
+    const type = this.querySelector('input').value;
+    selectOutcome(this, type);
+    this.querySelector('input').checked = true;
+  });
+});
+function updatePct(v) { document.getElementById('pctDisplay').textContent = v + '%'; }
+function updatePropPct(v) { document.getElementById('propPctDisplay').textContent = v + '%'; }
+function submitDispute() {
+  const brief = document.getElementById('clientBrief').value.trim();
+  const complaint = document.getElementById('clientComplaint').value.trim();
+  if (!brief || !complaint) { alert('Please fill in both fields — what you asked for and what was wrong.'); return; }
+  document.getElementById('disputeFormWrap').classList.add('hidden');
+  // Add to open disputes
+  const card = document.createElement('div');
+  card.className = 'card mb-2';
+  card.style.borderColor = 'rgba(239,68,68,0.3)';
+  card.style.marginTop = '8px';
+  card.innerHTML = `<div class="flex-between"><div><p class="fw-600">Logo Design — NexaBrand</p><p class="text-xs text-muted">Raised just now</p></div><span class="badge badge-error">Under Admin Review</span></div><p class="text-sm text-muted mt-2">Your complaint has been submitted. StryK will review within 24 hours. Escrow is frozen.</p>`;
+  document.getElementById('openDisputes').prepend(card);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function sendPartialProposal() {
+  const pct = document.getElementById('propRange').value;
+  document.getElementById('partialFormWrap').classList.add('hidden');
+  alert('Partial payment proposal of ' + pct + '% sent to the freelancer. They have 24 hours to accept or raise a dispute.');
+}
+function requestRevision(btn) {
+  btn.textContent = 'Revision Requested';
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+  const parent = btn.closest('.card');
+  const note = document.createElement('div');
+  note.className = 'alert alert-info mt-2';
+  note.textContent = 'Revision requested. The freelancer has been notified and will resubmit. This was your one free revision for this task.';
+  btn.closest('[style*="gap"]').after(note);
+}
+</script>
+
+<script src="sidebar.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>

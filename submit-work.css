@@ -1,0 +1,17 @@
+.back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-2); text-decoration: none; font-size: 14px; margin-bottom: 1.5rem; transition: color 0.15s; }
+.back-link:hover { color: var(--text-1); }
+.submit-layout { display: flex; gap: 1.5rem; align-items: flex-start; }
+.upload-zone {
+  border: 2px dashed var(--border); border-radius: var(--radius-lg);
+  padding: 2.5rem; text-align: center; cursor: pointer; transition: all 0.2s;
+}
+.upload-zone:hover { border-color: var(--accent); background: var(--accent-glow); }
+.uz-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.upload-zone p { font-size: 14px; color: var(--text-2); margin: 4px 0; }
+.file-preview-card {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--success-bg); border: 1px solid var(--success); border-radius: var(--radius-sm);
+  padding: 10px 14px; font-size: 14px; color: var(--success);
+}
+.ti-row { display: flex; justify-content: space-between; padding: 5px 0; }
+@media(max-width:768px) { .submit-layout { flex-direction: column; } .submit-layout > div { width: 100% !important; } }

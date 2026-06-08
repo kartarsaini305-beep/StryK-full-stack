@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile — StryK Client</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="profile.css">
+</head>
+<body>
+<script src="auth.js"></script>
+<script>StryKAuth.guard('client');</script>
+<script src="preloader.js"></script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav><span class="plan-badge">Client</span><div class="avatar" style="background:rgba(59,130,246,0.1);border-color:#3B82F6;color:#3B82F6">YC</div></nav>
+</nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission 6 Months</span></div></div>
+
+<div class="app-layout">
+  <aside class="sidebar">
+        <ul class="sidebar-menu">
+      <li><a href="client-dashboard.html">Dashboard</a></li>
+      <li><a href="post-task.html">Post Task</a></li>
+      <li><a href="client-my-tasks.html">My Tasks</a></li>
+      <li><a href="task-review.html">Review Work</a></li>
+      <li><a href="client-wallet.html">Wallet</a></li>
+      <li><a href="client-disputes.html">Disputes</a></li>
+      <li><a href="client-ratings.html">My Ratings</a></li>
+      <li><a href="client-profile.html" class="active">Profile</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-header flex-between">
+      <div><h1>My Profile</h1><p>Manage your brand account</p></div>
+      <button class="btn btn-primary" onclick="toggleEdit()">Edit Profile</button>
+    </div>
+
+    <div class="profile-layout">
+      <!-- Left card -->
+      <div class="prof-left">
+        <div class="card profile-card">
+          <div class="prof-avatar" style="background:rgba(59,130,246,0.12);border-color:#3B82F6;color:#3B82F6;font-size:1.2rem">YC</div>
+          <h2 class="prof-name">YourChannel Co.</h2>
+          <p class="text-muted text-sm">@yourchannel</p>
+          <div class="level-pill" style="background:rgba(59,130,246,0.1);color:#3B82F6;border-color:rgba(59,130,246,0.25)">Client — Pre-Beta Member</div>
+
+          <div class="prof-stats">
+            <div class="ps-item"><span class="ps-val">24</span><span class="ps-label">Tasks Posted</span></div>
+            <div class="ps-div"></div>
+            <div class="ps-item"><span class="ps-val" style="color:#3B82F6">₹12.4k</span><span class="ps-label">Total Spent</span></div>
+            <div class="ps-div"></div>
+            <div class="ps-item"><span class="ps-val">4.7</span><span class="ps-label">Avg Rating Given</span></div>
+          </div>
+
+          <!-- Client-specific info -->
+          <div class="divider"></div>
+          <div style="width:100%">
+            <p class="form-label mb-1">Business Type</p>
+            <span class="badge badge-info" style="font-size:13px;padding:5px 12px">YouTuber / Creator</span>
+          </div>
+          <div class="mt-2" style="width:100%">
+            <p class="form-label mb-1">Frequent Task Categories</p>
+            <div class="skills-wrap">
+              <span class="skill-chip active">Thumbnails</span>
+              <span class="skill-chip active">Video Editing</span>
+              <span class="skill-chip active">Writing</span>
+            </div>
+          </div>
+          <div class="mt-2" style="width:100%">
+            <p class="form-label mb-1">Membership</p>
+            <div class="card-accent card" style="padding:10px 14px;text-align:center">
+              <p class="text-xs fw-600 text-accent">Pre-Beta Member</p>
+              <p class="text-xs text-muted mt-1">0% commission for 4 more months</p>
+            </div>
+          </div>
+          <button class="btn btn-danger btn-sm btn-full mt-3" onclick="if(confirm('Logout?'))window.location='login.html'">Logout</button>
+        </div>
+      </div>
+
+      <!-- Right: Edit Form -->
+      <div class="prof-right">
+        <div class="card mb-3" id="editFormCard">
+          <h3 class="font-head fw-700 mb-3">Brand Information</h3>
+          <div class="profile-form disabled" id="profileForm">
+            <div class="grid-2">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" value="Rahul" disabled id="fn">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" value="Sharma" disabled id="ln">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Brand / Channel Name</label>
+              <input type="text" class="form-input" value="YourChannel Co." disabled id="brandName">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Work Email</label>
+              <input type="email" class="form-input" value="rahul@yourchannel.co" disabled id="email">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input type="tel" class="form-input" value="+91 98765 43210" disabled id="phone">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Industry</label>
+              <select class="form-select" disabled id="industry">
+                <option selected>Content Creation / YouTube</option>
+                <option>E-Commerce / D2C Brand</option>
+                <option>Digital Marketing Agency</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Website / Channel URL</label>
+              <input type="url" class="form-input" value="https://youtube.com/@yourchannel" disabled id="url">
+            </div>
+            <div class="form-group">
+              <label class="form-label">About Your Brand</label>
+              <textarea class="form-textarea" disabled id="bio">We are a tech-focused YouTube channel creating content about gadgets, AI, and coding. We post 3 videos weekly and need fast creative support for thumbnails and editing.</textarea>
+            </div>
+          </div>
+          <div id="editActions" class="hidden mt-2" style="display:flex;gap:10px">
+            <button class="btn btn-primary" onclick="saveProfile()">Save Changes</button>
+            <button class="btn btn-ghost" onclick="cancelEdit()">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Stats card -->
+        <div class="card">
+          <h3 class="font-head fw-700 mb-3">Task Activity</h3>
+          <div class="stat-grid" style="grid-template-columns:repeat(3,1fr)">
+            <div class="stat-card stat-accent"><div class="stat-label">Total Spent</div><div class="stat-value">₹12.4k</div></div>
+            <div class="stat-card"><div class="stat-label">Avg Task Cost</div><div class="stat-value">₹517</div></div>
+            <div class="stat-card"><div class="stat-label">Repeat Freelancers</div><div class="stat-value">6</div></div>
+            <div class="stat-card"><div class="stat-label">Completion Rate</div><div class="stat-value">96%</div></div>
+            <div class="stat-card"><div class="stat-label">Disputes Raised</div><div class="stat-value">2</div></div>
+            <div class="stat-card"><div class="stat-label">Avg Rating Given</div><div class="stat-value">4.7</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+let editing = false;
+function toggleEdit() {
+  editing = !editing;
+  const inputs = document.querySelectorAll('#profileForm input, #profileForm select, #profileForm textarea');
+  inputs.forEach(i => i.disabled = !editing);
+  document.querySelector('[onclick="toggleEdit()"]').textContent = editing ? 'Cancel' : 'Edit Profile';
+  document.getElementById('editActions').style.display = editing ? 'flex' : 'none';
+}
+function saveProfile() {
+  editing = false;
+  document.querySelectorAll('#profileForm input, #profileForm select, #profileForm textarea').forEach(i => i.disabled = true);
+  document.querySelector('[onclick="toggleEdit()"]').textContent = 'Edit Profile';
+  document.getElementById('editActions').style.display = 'none';
+  const a = document.createElement('div');
+  a.className = 'alert alert-success mb-2';
+  a.textContent = 'Profile updated successfully.';
+  document.getElementById('editFormCard').prepend(a);
+  setTimeout(() => a.remove(), 3000);
+}
+function cancelEdit() { toggleEdit(); }
+</script>
+<script src="sidebar.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>

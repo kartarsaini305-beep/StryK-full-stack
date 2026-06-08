@@ -1,0 +1,11 @@
+.plan-badge { background: var(--info-bg); color: var(--info); padding: 4px 12px; border-radius: 99px; font-size: 13px; font-weight: 600; border: 1px solid rgba(59,130,246,0.3); }
+.active-tasks { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+.atask-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; transition: border-color 0.2s; }
+.atask-card:hover { border-color: var(--border-light); }
+.task-cat { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.task-cat.design { background: rgba(167,139,250,0.15); color: #a78bfa; }
+.task-cat.writing { background: rgba(34,211,238,0.15); color: #22d3ee; }
+.task-cat.data { background: rgba(52,211,153,0.15); color: #34d399; }
+.task-cat.video { background: rgba(248,113,113,0.15); color: #f87171; }
+.task-cat.dev { background: rgba(251,191,36,0.15); color: #fbbf24; }
+@media(max-width:900px) { .active-tasks { grid-template-columns: 1fr; } }

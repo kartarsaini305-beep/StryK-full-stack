@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Tasks — StryK Client</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="my-tasks.css">
+</head>
+<body>
+<script src="auth.js"></script>
+<script>StryKAuth.guard('client');</script>
+<script src="preloader.js"></script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav><span class="plan-badge">Client</span><div class="avatar" style="cursor:pointer" onclick="window.location='client-profile.html'" style="background:rgba(59,130,246,0.1);border-color:#3B82F6;color:#3B82F6">YC</div></nav>
+</nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Same Day Delivery</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Booking</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Same Day Delivery</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Booking</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span></div></div>
+
+<div class="app-layout">
+  <aside class="sidebar">
+        <ul class="sidebar-menu">
+      <li><a href="client-dashboard.html">Dashboard</a></li>
+      <li><a href="post-task.html">Post Task</a></li>
+      <li><a href="client-my-tasks.html" class="active">My Tasks</a></li>
+      <li><a href="task-review.html">Review Work</a></li>
+      <li><a href="client-wallet.html">Wallet</a></li>
+      <li><a href="client-disputes.html">Disputes</a></li>
+      <li><a href="client-ratings.html">My Ratings</a></li>
+      <li><a href="client-profile.html">Profile</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <div class="flex-between mb-3">
+      <div>
+        <h1 class="font-head" style="font-size:1.6rem;font-weight:700">My Tasks</h1>
+        <p class="text-muted text-sm">Tasks you have posted on StryK</p>
+      </div>
+      <a href="post-task.html" class="btn btn-primary">+ Post New Task</a>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-bar mb-3">
+      <button class="tab-btn active" onclick="switchTab('live',this)">Live <span class="tab-count">3</span></button>
+      <button class="tab-btn" onclick="switchTab('review',this)">Awaiting Review <span class="tab-count">2</span></button>
+      <button class="tab-btn" onclick="switchTab('completed',this)">Completed <span class="tab-count">19</span></button>
+      <button class="tab-btn" onclick="switchTab('disputed',this)">Disputed <span class="tab-count">1</span></button>
+    </div>
+
+    <!-- LIVE -->
+    <div id="tab-live">
+      <div class="task-list-card">
+        <div class="tlc-header">
+          <div class="flex-center gap-2">
+            <span class="task-cat design">Design</span>
+            <span class="fw-600">YouTube Thumbnail for Tech Review Channel</span>
+          </div>
+          <span class="badge badge-info">In Progress</span>
+        </div>
+        <div class="tlc-meta">
+          <span>Budget: ₹450</span>
+          <span>Freelancer: @kartar_stryk</span>
+          <span>Due: Today 7:00 PM</span>
+        </div>
+        <div class="tlc-timeline">
+          <div class="tl-step done">Posted</div>
+          <div class="tl-line done"></div>
+          <div class="tl-step done">Booked</div>
+          <div class="tl-line done"></div>
+          <div class="tl-step active">In Progress</div>
+          <div class="tl-line"></div>
+          <div class="tl-step">Submitted</div>
+          <div class="tl-line"></div>
+          <div class="tl-step">Paid</div>
+        </div>
+        <div class="tlc-actions">
+          <a href="task-review.html" class="btn btn-ghost btn-sm">View Details</a>
+          <button class="btn btn-ghost btn-sm" onclick="cancelTask(this)">Cancel Task</button>
+        </div>
+      </div>
+
+      <div class="task-list-card">
+        <div class="tlc-header">
+          <div class="flex-center gap-2">
+            <span class="task-cat writing">Writing</span>
+            <span class="fw-600">10 Instagram Captions for Food Brand</span>
+          </div>
+          <span class="badge badge-accent">Clarity Window</span>
+        </div>
+        <div class="tlc-meta">
+          <span>Budget: ₹250</span>
+          <span>Freelancer: @priya_writes</span>
+          <span>Due: Tomorrow 12 PM</span>
+        </div>
+        <div class="tlc-timeline">
+          <div class="tl-step done">Posted</div>
+          <div class="tl-line done"></div>
+          <div class="tl-step done">Booked</div>
+          <div class="tl-line active"></div>
+          <div class="tl-step active">Clarity</div>
+          <div class="tl-line"></div>
+          <div class="tl-step">In Progress</div>
+          <div class="tl-line"></div>
+          <div class="tl-step">Paid</div>
+        </div>
+        <div class="tlc-actions">
+          <a href="clarity-window.html" class="btn btn-primary btn-sm">Join Clarity Window</a>
+        </div>
+      </div>
+
+      <div class="task-list-card">
+        <div class="tlc-header">
+          <div class="flex-center gap-2">
+            <span class="task-cat" style="background:rgba(16,185,129,0.12);color:#10B981">Data</span>
+            <span class="fw-600">Spreadsheet Cleanup — 500 rows</span>
+          </div>
+          <span class="badge badge-neutral">Waiting for Freelancer</span>
+        </div>
+        <div class="tlc-meta">
+          <span>Budget: ₹350</span>
+          <span>Freelancer: Not yet assigned</span>
+          <span>Posted: 20 min ago</span>
+        </div>
+        <div class="tlc-timeline">
+          <div class="tl-step done">Posted</div>
+          <div class="tl-line active"></div>
+          <div class="tl-step active">Waiting</div>
+          <div class="tl-line"></div>
+          <div class="tl-step">Booked</div>
+          <div class="tl-line"></div>
+          <div class="tl-step">In Progress</div>
+          <div class="tl-line"></div>
+          <div class="tl-step">Paid</div>
+        </div>
+        <div class="tlc-actions">
+          <button class="btn btn-ghost btn-sm">Edit Task</button>
+          <button class="btn btn-ghost btn-sm" onclick="cancelTask(this)">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AWAITING REVIEW -->
+    <div id="tab-review" class="hidden">
+      <div class="task-list-card" style="border-color:rgba(245,158,11,0.3)">
+        <div class="tlc-header">
+          <div class="flex-center gap-2">
+            <span class="task-cat design">Design</span>
+            <span class="fw-600">Logo Design — NexaBrand</span>
+          </div>
+          <span class="badge badge-warning">Awaiting Your Review</span>
+        </div>
+        <div class="tlc-meta">
+          <span>Budget: ₹600</span>
+          <span>Freelancer: @raubin_design</span>
+          <span>Submitted: 1 hour ago</span>
+        </div>
+        <div class="alert alert-warning mt-2 mb-2">
+          Work has been submitted. Review and approve within 24 hours or payment auto-releases.
+        </div>
+        <div class="tlc-actions">
+          <a href="task-review.html" class="btn btn-primary btn-sm">Review Submission</a>
+          <button class="btn btn-ghost btn-sm">Request Revision</button>
+          <a href="client-disputes.html" class="btn btn-ghost btn-sm">Raise Dispute</a>
+        </div>
+      </div>
+
+      <div class="task-list-card" style="border-color:rgba(245,158,11,0.3)">
+        <div class="tlc-header">
+          <div class="flex-center gap-2">
+            <span class="task-cat writing">Writing</span>
+            <span class="fw-600">Blog Post — 800 words on AI trends</span>
+          </div>
+          <span class="badge badge-warning">Awaiting Your Review</span>
+        </div>
+        <div class="tlc-meta">
+          <span>Budget: ₹300</span>
+          <span>Freelancer: @ananya_writes</span>
+          <span>Submitted: 3 hours ago</span>
+        </div>
+        <div class="tlc-actions">
+          <a href="task-review.html" class="btn btn-primary btn-sm">Review Submission</a>
+          <button class="btn btn-ghost btn-sm">Request Revision</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPLETED -->
+    <div id="tab-completed" class="hidden">
+      <div class="card mb-2" style="padding:1rem">
+        <div class="flex-between">
+          <div class="flex-center gap-2">
+            <span class="task-cat design">Design</span>
+            <span class="fw-600 text-sm">Thumbnail Pack x5</span>
+          </div>
+          <div class="flex-center gap-2">
+            <span class="text-accent fw-600 text-sm">₹500</span>
+            <span class="badge badge-success">Completed</span>
+          </div>
+        </div>
+        <div class="flex-between mt-1">
+          <span class="text-xs text-muted">Freelancer: @kartar_stryk &nbsp;·&nbsp; Jun 5</span>
+          <div class="star-row" data-rating="5">★★★★★</div>
+        </div>
+      </div>
+      <div class="card mb-2" style="padding:1rem">
+        <div class="flex-between">
+          <div class="flex-center gap-2">
+            <span class="task-cat writing">Writing</span>
+            <span class="fw-600 text-sm">Email Sequence — 5 emails</span>
+          </div>
+          <div class="flex-center gap-2">
+            <span class="text-accent fw-600 text-sm">₹400</span>
+            <span class="badge badge-success">Completed</span>
+          </div>
+        </div>
+        <div class="flex-between mt-1">
+          <span class="text-xs text-muted">Freelancer: @ananya_writes &nbsp;·&nbsp; Jun 4</span>
+          <div class="star-row" data-rating="4">★★★★☆</div>
+        </div>
+      </div>
+      <div class="card mb-2" style="padding:1rem">
+        <div class="flex-between">
+          <div class="flex-center gap-2">
+            <span class="task-cat" style="background:rgba(139,92,246,0.12);color:#8B5CF6">Video</span>
+            <span class="fw-600 text-sm">Reels Edit x3</span>
+          </div>
+          <div class="flex-center gap-2">
+            <span class="text-accent fw-600 text-sm">₹900</span>
+            <span class="badge badge-success">Completed</span>
+          </div>
+        </div>
+        <div class="flex-between mt-1">
+          <span class="text-xs text-muted">Freelancer: @priya_edits &nbsp;·&nbsp; Jun 3</span>
+          <div class="star-row" data-rating="5">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISPUTED -->
+    <div id="tab-disputed" class="hidden">
+      <div class="task-list-card" style="border-color:rgba(239,68,68,0.3)">
+        <div class="tlc-header">
+          <div class="flex-center gap-2">
+            <span class="task-cat" style="background:rgba(16,185,129,0.12);color:#10B981">Data</span>
+            <span class="fw-600">Data Cleanup — 500 rows</span>
+          </div>
+          <span class="badge badge-error">Disputed</span>
+        </div>
+        <div class="tlc-meta">
+          <span>Budget: ₹800 (in escrow)</span>
+          <span>Freelancer: @dev_kumar</span>
+          <span>Disputed: Jun 5</span>
+        </div>
+        <div class="alert alert-error mt-2 mb-2">
+          Dispute is under admin review. You will be notified of the decision within 24 hours.
+        </div>
+        <div class="tlc-actions">
+          <a href="client-disputes.html" class="btn btn-ghost btn-sm">View Dispute</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<style>
+.tlc-timeline { display:flex; align-items:center; gap:0; margin:12px 0; }
+.tl-step { font-size:11px; font-weight:600; color:var(--text-3); padding:4px 8px; border-radius:4px; white-space:nowrap; }
+.tl-step.done { color:var(--success); }
+.tl-step.active { color:var(--accent); background:var(--accent-glow); }
+.tl-line { flex:1; height:1px; background:var(--border); }
+.tl-line.done { background:var(--success); }
+.tl-line.active { background:linear-gradient(to right,var(--success),var(--border)); }
+.star-row { color:var(--accent); font-size:12px; }
+</style>
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['live','review','completed','disputed'].forEach(t => {
+    const el = document.getElementById('tab-'+t);
+    if(el) el.classList.toggle('hidden', t !== id);
+  });
+}
+function cancelTask(btn) {
+  if(confirm('Cancel this task? Your escrow will be refunded.')) {
+    btn.closest('.task-list-card').style.opacity='0.4';
+    btn.closest('.task-list-card').style.pointerEvents='none';
+  }
+}
+</script>
+<script src="sidebar.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>

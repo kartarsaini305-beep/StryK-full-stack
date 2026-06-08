@@ -1,0 +1,20 @@
+.auth-page {
+  min-height: calc(100vh - var(--nav-h));
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+}
+.auth-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-xl); padding: 2.5rem;
+  width: 100%; max-width: 400px; box-shadow: var(--shadow);
+}
+.otp-icon { font-size: 3rem; margin-bottom: 1rem; }
+.otp-inputs { display: flex; gap: 10px; justify-content: center; margin-bottom: 1rem; }
+.otp-input {
+  width: 48px; height: 56px; text-align: center;
+  background: var(--surface); border: 2px solid var(--border);
+  color: var(--text-1); font-family: var(--font-head); font-size: 1.4rem; font-weight: 700;
+  border-radius: var(--radius-sm); transition: border-color 0.2s;
+}
+.otp-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.forgot-link { color: var(--accent); text-decoration: none; font-weight: 600; }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task Detail — StryK</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="task-detail.css">
+</head>
+<body>
+<script src="auth.js"></script>
+<script>StryKAuth.guard('freelancer');</script>
+<script src="preloader.js"></script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav><span class="level-badge"> Level 1</span><div class="avatar">KS</div></nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span></div></div>
+</nav>
+<div class="app-layout">
+  <aside class="sidebar">
+    <ul class="sidebar-menu">
+      <li><a href="freelancer-dashboard.html"> Dashboard</a></li>
+      <li><a href="browse-tasks.html" class="active"> Browse Tasks</a></li>
+      <li><a href="my-tasks.html"> My Tasks</a></li>
+      <li><a href="wallet.html"> Wallet</a></li>
+      <li><a href="ratings.html"> Ratings</a></li>
+      <li><a href="disputes.html"> Disputes</a></li>
+      <li><a href="profile.html"> Profile</a></li>
+    </ul>
+  </aside>
+  <main class="main-content">
+    <a href="browse-tasks.html" class="back-link">← Back to Tasks</a>
+    <div class="detail-layout">
+      <!-- LEFT: Task Info -->
+      <div class="detail-main">
+        <div class="flex-center gap-2 mb-2">
+          <span class="task-cat design">Design</span>
+          <span class="badge badge-success">Open</span>
+        </div>
+        <h1 style="font-family:var(--font-head);font-size:1.6rem;font-weight:700;margin-bottom:1rem">YouTube Thumbnail for Tech Review Channel</h1>
+        <div class="detail-meta-row">
+          <div class="dm-item"><span class="dm-label">Pay</span><span class="dm-val accent">₹450</span></div>
+          <div class="dm-item"><span class="dm-label">Duration</span><span class="dm-val">1.5 hours</span></div>
+          <div class="dm-item"><span class="dm-label">Deadline</span><span class="dm-val">Today, 7:00 PM</span></div>
+          <div class="dm-item"><span class="dm-label">Level</span><span class="dm-val">Level 1 — Beginner</span></div>
+        </div>
+        <div class="divider"></div>
+        <h3 class="section-sub">Task Description</h3>
+        <p style="color:var(--text-2);line-height:1.7;font-size:15px">I need a high-quality YouTube thumbnail for my latest tech review video about the iPhone 16. The thumbnail should be eye-catching, bold, and clearly communicate the content at a glance.</p>
+        <h3 class="section-sub mt-3">Deliverables</h3>
+        <ul class="deliverable-list">
+          <li>1 YouTube thumbnail (1280×720px)</li>
+          <li>PNG format, high resolution</li>
+          <li>Bold title text overlay</li>
+          <li>Product image (provided below)</li>
+          <li>Brand colors: Red and White</li>
+        </ul>
+        <h3 class="section-sub mt-3">Reference Files</h3>
+        <div class="file-ref"> reference-images.zip &nbsp;<span class="text-xs text-muted">2.3 MB</span></div>
+        <div class="alert alert-warning mt-3">
+          <span></span>
+          <div>After booking, you'll have a <strong>5-minute Clarity Window</strong> to ask the client up to 2 questions. Work starts after that — no extensions.</div>
+        </div>
+      </div>
+      <!-- RIGHT: Book Panel -->
+      <div class="book-panel">
+        <div class="card">
+          <div class="bp-pay">₹450</div>
+          <div class="text-sm text-muted mb-3">You receive ₹396 after 12% platform fee</div>
+          <div class="divider"></div>
+          <div class="bp-row"><span class="text-sm text-muted">Task Pay</span><span class="fw-600">₹450</span></div>
+          <div class="bp-row"><span class="text-sm text-muted">Platform Fee (12%)</span><span class="fw-600 text-xs" style="color:var(--error)">-₹54</span></div>
+          <div class="bp-row"><span class="fw-600">Your Earnings</span><span class="fw-600 text-accent">₹396</span></div>
+          <div class="divider"></div>
+          <button class="btn btn-primary btn-full btn-lg" onclick="bookTask()">Book This Task </button>
+          <p class="text-xs text-muted mt-2" style="text-align:center">Clarity window opens immediately after booking</p>
+          <div class="divider"></div>
+          <div class="client-info">
+            <div class="avatar">TC</div>
+            <div>
+              <div class="fw-600 text-sm">@techcreator</div>
+              <div class="text-xs text-muted">4.9  · 45 tasks posted</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+function bookTask() {
+  if (confirm('Book this task? Clarity window will open immediately.')) {
+    window.location = 'clarity-window.html';
+  }
+}
+</script>
+<script src="sidebar.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>

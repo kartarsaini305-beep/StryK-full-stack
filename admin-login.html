@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Access — StryK</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<style>
+body { display:flex; align-items:center; justify-content:center; min-height:100vh; }
+.gate-wrap {
+  width:100%; max-width:380px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  animation: gateIn 0.5s 0.1s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes gateIn {
+  from { opacity:0; transform:translateY(16px) scale(0.98); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+.gate-icon {
+  width:52px; height:52px;
+  background:var(--error-bg);
+  border:1px solid rgba(239,68,68,0.25);
+  border-radius:var(--radius);
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 1.25rem;
+  color:var(--error);
+}
+.gate-title {
+  font-family:'Sora',sans-serif;
+  font-size:1.3rem; font-weight:700;
+  margin-bottom:6px;
+}
+.gate-sub { font-size:13px; color:var(--text-2); margin-bottom:1.75rem; }
+
+/* Passcode dots */
+.dots-row {
+  display:flex; justify-content:center; gap:14px;
+  margin-bottom:1.75rem;
+}
+.pc-dot {
+  width:13px; height:13px;
+  border-radius:50%;
+  border:2px solid var(--border-light);
+  transition:all 0.12s;
+}
+.pc-dot.on  { background:var(--accent); border-color:var(--accent); transform:scale(1.15); }
+.pc-dot.err { background:var(--error);  border-color:var(--error);  animation:shake 0.35s ease; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+/* Numpad */
+.numpad {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.np-btn {
+  padding:15px 10px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  font-family:var(--font-body);
+  font-size:1.05rem; font-weight:600;
+  color:var(--text-1);
+  cursor:pointer;
+  transition:all 0.1s;
+  user-select:none;
+}
+.np-btn:hover { background:var(--card-hover); border-color:var(--border-light); }
+.np-btn:active { transform:scale(0.94); }
+.np-btn.del { color:var(--text-2); font-size:0.85rem; letter-spacing:0; }
+.np-spacer { visibility:hidden; }
+
+.error-msg {
+  margin-top:1rem;
+  font-size:13px; color:var(--error);
+  opacity:0;
+  transition:opacity 0.2s;
+}
+.error-msg.show { opacity:1; }
+.attempts-left { font-size:12px; color:var(--text-3); margin-top:8px; }
+</style>
+</head>
+<body>
+<script src="preloader.js"></script>
+
+<div class="gate-wrap">
+  <div class="gate-icon">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+      <rect x="3" y="11" width="18" height="11" rx="2"/>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    </svg>
+  </div>
+  <h2 class="gate-title"><span style="color:#EF4444">Admin</span> Access</h2>
+  <p class="gate-sub">Enter your 6-digit passcode to continue</p>
+
+  <div class="dots-row">
+    <div class="pc-dot" id="d0"></div>
+    <div class="pc-dot" id="d1"></div>
+    <div class="pc-dot" id="d2"></div>
+    <div class="pc-dot" id="d3"></div>
+    <div class="pc-dot" id="d4"></div>
+    <div class="pc-dot" id="d5"></div>
+  </div>
+
+  <div class="numpad">
+    <button class="np-btn" onclick="press('1')">1</button>
+    <button class="np-btn" onclick="press('2')">2</button>
+    <button class="np-btn" onclick="press('3')">3</button>
+    <button class="np-btn" onclick="press('4')">4</button>
+    <button class="np-btn" onclick="press('5')">5</button>
+    <button class="np-btn" onclick="press('6')">6</button>
+    <button class="np-btn" onclick="press('7')">7</button>
+    <button class="np-btn" onclick="press('8')">8</button>
+    <button class="np-btn" onclick="press('9')">9</button>
+    <div class="np-spacer"></div>
+    <button class="np-btn" onclick="press('0')">0</button>
+    <button class="np-btn del" onclick="del()">DEL</button>
+  </div>
+
+  <div class="error-msg" id="errMsg">Incorrect passcode. Try again.</div>
+  <div class="attempts-left" id="attemptsLeft"></div>
+</div>
+
+<script>
+// PASSCODE: 220611  (change this to whatever you want)
+const PASSCODE = '220611';
+let input = '';
+let attempts = 0;
+const MAX_ATTEMPTS = 5;
+
+function press(n) {
+  if (input.length >= 6) return;
+  input += n;
+  updateDots();
+  if (input.length === 6) setTimeout(verify, 180);
+}
+
+function del() {
+  input = input.slice(0, -1);
+  updateDots();
+  document.getElementById('errMsg').classList.remove('show');
+}
+
+function updateDots() {
+  for (let i = 0; i < 6; i++) {
+    const d = document.getElementById('d' + i);
+    d.classList.toggle('on', i < input.length);
+    d.classList.remove('err');
+  }
+}
+
+function verify() {
+  if (input === PASSCODE) {
+    // success — flash green then redirect
+    for (let i = 0; i < 6; i++) {
+      const d = document.getElementById('d' + i);
+      d.style.background = '#10B981';
+      d.style.borderColor = '#10B981';
+    }
+    setTimeout(() => { sessionStorage.setItem('stryk_admin_auth','1'); window.location.href = 'admin-dashboard.html'; }, 500);
+  } else {
+    attempts++;
+    for (let i = 0; i < 6; i++) document.getElementById('d' + i).classList.add('err');
+    document.getElementById('errMsg').classList.add('show');
+    if (attempts >= MAX_ATTEMPTS) {
+      document.getElementById('errMsg').textContent = 'Too many attempts. Try again in 30 minutes.';
+      document.querySelectorAll('.np-btn').forEach(b => b.disabled = true);
+      document.getElementById('attemptsLeft').textContent = '';
+      setTimeout(() => {
+        document.querySelectorAll('.np-btn').forEach(b => b.disabled = false);
+        attempts = 0;
+        document.getElementById('errMsg').classList.remove('show');
+      }, 1800000);
+    } else {
+      const left = MAX_ATTEMPTS - attempts;
+      document.getElementById('attemptsLeft').textContent = left + ' attempt' + (left>1?'s':'') + ' remaining';
+    }
+    setTimeout(() => { input = ''; updateDots(); }, 600);
+  }
+}
+
+// Keyboard support
+document.addEventListener('keydown', e => {
+  if (e.key >= '0' && e.key <= '9') press(e.key);
+  if (e.key === 'Backspace') del();
+});
+</script>
+<script src="animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.admin-badge { background: var(--error-bg); color: var(--error); padding: 4px 12px; border-radius: 99px; font-size: 13px; font-weight: 600; border: 1px solid rgba(239,68,68,0.3); }
+.admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.dispute-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); gap: 1rem; }
+.dispute-row:last-child { border-bottom: none; }
+.txn-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+.txn-row:last-child { border-bottom: none; }
+.badge-warning { background: var(--warning-bg); color: var(--warning); }
+@media(max-width:900px) { .admin-grid { grid-template-columns: 1fr; } }

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap' rel='stylesheet'>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Users — StryK Admin</title>
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="preloader.css">
+<link rel="stylesheet" href="admin-dashboard.css">
+<link rel="stylesheet" href="admin-sub.css">
+</head>
+<body>
+<script src="preloader.js"></script>
+<script>
+if (!sessionStorage.getItem('stryk_admin_auth')) {
+  window.location.replace('admin-login.html');
+}
+</script>
+<nav class="navbar">
+  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+  <nav><span class="admin-badge">Admin</span><div class="avatar" style="background:var(--error-bg);border-color:var(--error);color:var(--error)">AD</div></nav>
+</nav>
+<div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span></div></div>
+<div class="app-layout">
+  <aside class="sidebar">
+    <ul class="sidebar-menu">
+      <li><a href="admin-dashboard.html">Overview</a></li>
+      <li><a href="admin-users.html" class="active">Users</a></li>
+      <li><a href="admin-tasks.html">All Tasks</a></li>
+      <li><a href="admin-disputes.html">Disputes</a></li>
+      <li><a href="admin-transactions.html">Transactions</a></li>
+      <li><a href="admin-reports.html">Reports</a></li>
+      <li><a href="admin-settings.html">Settings</a></li>
+    </ul>
+  </aside>
+  <main class="main-content">
+    <div class="flex-between mb-3">
+      <div>
+        <h1 class="font-head" style="font-size:1.6rem;font-weight:700">User Management</h1>
+        <p class="text-muted text-sm">284 total users · 196 freelancers · 88 clients</p>
+      </div>
+      <div class="flex gap-2">
+        <button class="btn btn-ghost btn-sm" onclick="exportCSV()">Export CSV</button>
+        <button class="btn btn-primary btn-sm">+ Invite User</button>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-bar mb-3">
+      <div class="filter-tabs">
+        <button class="ftab active" onclick="filterUsers('all', this)">All (284)</button>
+        <button class="ftab" onclick="filterUsers('freelancer', this)">Freelancers (196)</button>
+        <button class="ftab" onclick="filterUsers('client', this)">Clients (88)</button>
+        <button class="ftab" onclick="filterUsers('flagged', this)">Flagged (3)</button>
+        <button class="ftab" onclick="filterUsers('banned', this)">Banned (1)</button>
+      </div>
+      <div class="search-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" class="search-input" placeholder="Search by name, email, phone..." oninput="searchUsers(this.value)">
+      </div>
+    </div>
+
+    <!-- Users Table -->
+    <div class="card" style="padding:0;overflow:hidden">
+      <div class="table-wrap">
+        <table id="usersTable">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Role</th>
+              <th>Level</th>
+              <th>Tasks</th>
+              <th>Earnings / Spend</th>
+              <th>Rating</th>
+              <th>Joined</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="usersBody">
+            <tr data-role="freelancer" data-status="active">
+              <td><div class="user-cell"><div class="avatar">KS</div><div><p class="fw-600 text-sm">Kartar Saini</p><p class="text-xs text-muted">kartar@stryk.in</p></div></div></td>
+              <td><span class="badge badge-info">Freelancer</span></td>
+              <td><span class="badge badge-accent">Level 2</span></td>
+              <td>18</td>
+              <td class="text-accent fw-600">₹12,400</td>
+              <td>4.9</td>
+              <td>May 20</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td><div class="action-btns"><button class="btn btn-ghost btn-sm" onclick="viewUser('KS')">View</button><button class="btn btn-ghost btn-sm" onclick="banUser(this)">Ban</button></div></td>
+            </tr>
+            <tr data-role="freelancer" data-status="active">
+              <td><div class="user-cell"><div class="avatar">RS</div><div><p class="fw-600 text-sm">Raubin Sharma</p><p class="text-xs text-muted">raubin@gmail.com</p></div></div></td>
+              <td><span class="badge badge-info">Freelancer</span></td>
+              <td><span class="badge badge-neutral">Level 1</span></td>
+              <td>5</td>
+              <td class="text-accent fw-600">₹2,100</td>
+              <td>4.6</td>
+              <td>Jun 1</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td><div class="action-btns"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-ghost btn-sm">Ban</button></div></td>
+            </tr>
+            <tr data-role="client" data-status="active">
+              <td><div class="user-cell"><div class="avatar" style="background:rgba(59,130,246,0.1);border-color:#3B82F6;color:#3B82F6">TC</div><div><p class="fw-600 text-sm">TechCreator YT</p><p class="text-xs text-muted">tech@youtube.co</p></div></div></td>
+              <td><span class="badge badge-accent">Client</span></td>
+              <td><span class="text-muted text-sm">—</span></td>
+              <td>12 posted</td>
+              <td class="fw-600">₹8,200 spent</td>
+              <td>—</td>
+              <td>Jun 4</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td><div class="action-btns"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-ghost btn-sm">Ban</button></div></td>
+            </tr>
+            <tr data-role="client" data-status="flagged">
+              <td><div class="user-cell"><div class="avatar" style="background:var(--error-bg);border-color:var(--error);color:var(--error)">FB</div><div><p class="fw-600 text-sm">Fashion Brand Co</p><p class="text-xs text-muted">info@fashbrand.in</p></div></div></td>
+              <td><span class="badge badge-accent">Client</span></td>
+              <td><span class="text-muted text-sm">—</span></td>
+              <td>3 posted</td>
+              <td class="fw-600">₹1,800 spent</td>
+              <td>—</td>
+              <td>Jun 3</td>
+              <td><span class="badge badge-error">Flagged</span></td>
+              <td><div class="action-btns"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-danger btn-sm">Ban</button></div></td>
+            </tr>
+            <tr data-role="freelancer" data-status="active">
+              <td><div class="user-cell"><div class="avatar">AP</div><div><p class="fw-600 text-sm">Ananya Patel</p><p class="text-xs text-muted">ananya.p@gmail.com</p></div></div></td>
+              <td><span class="badge badge-info">Freelancer</span></td>
+              <td><span class="badge badge-accent">Level 3</span></td>
+              <td>34</td>
+              <td class="text-accent fw-600">₹38,700</td>
+              <td>5.0</td>
+              <td>Apr 12</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td><div class="action-btns"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-ghost btn-sm">Ban</button></div></td>
+            </tr>
+            <tr data-role="freelancer" data-status="banned">
+              <td><div class="user-cell"><div class="avatar" style="background:var(--error-bg);border-color:var(--error);color:var(--error)">XX</div><div><p class="fw-600 text-sm">Spam Account</p><p class="text-xs text-muted">spam123@mail.com</p></div></div></td>
+              <td><span class="badge badge-info">Freelancer</span></td>
+              <td><span class="text-muted text-sm">—</span></td>
+              <td>0</td>
+              <td class="text-muted">—</td>
+              <td>—</td>
+              <td>Jun 5</td>
+              <td><span class="badge badge-error">Banned</span></td>
+              <td><div class="action-btns"><button class="btn btn-ghost btn-sm">View</button><button class="btn btn-secondary btn-sm">Unban</button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- User Detail Modal -->
+    <div class="modal-overlay hidden" id="userModal">
+      <div class="modal-card">
+        <div class="flex-between mb-3">
+          <h3 class="font-head fw-700" style="font-size:1.1rem">User Details</h3>
+          <button class="btn btn-ghost btn-sm" onclick="closeModal()">Close</button>
+        </div>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+<script>
+function filterUsers(role, btn) {
+  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const rows = document.querySelectorAll('#usersBody tr');
+  rows.forEach(row => {
+    if (role === 'all') { row.style.display = ''; return; }
+    const r = row.dataset.role;
+    const s = row.dataset.status;
+    if (role === 'flagged' || role === 'banned') {
+      row.style.display = s === role ? '' : 'none';
+    } else {
+      row.style.display = r === role ? '' : 'none';
+    }
+  });
+}
+function searchUsers(q) {
+  const rows = document.querySelectorAll('#usersBody tr');
+  rows.forEach(row => {
+    row.style.display = row.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
+  });
+}
+function viewUser(id) {
+  document.getElementById('userModal').classList.remove('hidden');
+  document.getElementById('modalContent').innerHTML = `<div class="stat-grid"><div class="stat-card stat-accent"><div class="stat-label">Tasks Completed</div><div class="stat-value">18</div></div><div class="stat-card"><div class="stat-label">Total Earned</div><div class="stat-value">₹12,400</div></div><div class="stat-card"><div class="stat-label">Rating</div><div class="stat-value">4.9</div></div></div><div class="divider mt-2 mb-2"></div><p class="text-sm text-muted">Joined May 20, 2026 · Verified via WhatsApp · Level 2 Freelancer</p>`;
+}
+function closeModal() {
+  document.getElementById('userModal').classList.add('hidden');
+}
+function banUser(btn) {
+  if(confirm('Ban this user? They will lose all access.')) {
+    btn.closest('tr').querySelector('.badge').className = 'badge badge-error';
+    btn.closest('tr').querySelector('.badge').textContent = 'Banned';
+    btn.textContent = 'Unban';
+    btn.className = 'btn btn-secondary btn-sm';
+  }
+}
+function exportCSV() { alert('Exporting users list as CSV...'); }
+</script>
+<script src="sidebar.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>
