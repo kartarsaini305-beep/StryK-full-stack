@@ -33,3 +33,26 @@
 .auth-divider span { background: var(--card); position: relative; padding: 0 1rem; font-size: 13px; color: var(--text-3); }
 .auth-switch { text-align: center; font-size: 14px; color: var(--text-2); margin-top: 1.5rem; }
 .auth-switch a { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+/* ─── LOGIN RESPONSIVE ─── */
+@media (max-width: 480px) {
+  .auth-card { padding: 1.5rem 1rem; border-radius: var(--radius-lg); }
+  .auth-header h1 { font-size: 1.4rem; }
+  .auth-divider { margin: 1rem 0; }
+  .social-btn { padding: 12px 14px; font-size: 13px; }
+}
+
+/* ─── ADMIN LOGIN / NUMPAD ─── */
+@media (max-width: 480px) {
+  .numpad { gap: 8px; padding: 1rem; }
+  .numpad-btn { padding: 12px 8px; font-size: 1rem; min-height: 48px; }
+  .pin-display { gap: 10px; margin: 1rem 0; }
+  .pin-dot { width: 14px; height: 14px; }
+}
+
+/* ─── FIX: auth-page inside page-body ─── */
+main.page-body.auth-page {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: calc(var(--nav-h) + var(--ticker-h) + 2rem);
+}

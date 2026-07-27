@@ -5,6 +5,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reports — StryK Admin</title>
 <link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="responsive.css">
 <link rel="stylesheet" href="preloader.css">
 <link rel="stylesheet" href="admin-dashboard.css">
 <link rel="stylesheet" href="admin-sub.css">
@@ -18,19 +19,21 @@ if (!sessionStorage.getItem('stryk_admin_auth')) {
 </script>
 <nav class="navbar">
   <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
-  <nav><span class="admin-badge">Admin</span><div class="avatar" style="background:var(--error-bg);border-color:var(--error);color:var(--error)">AD</div></nav>
+  <nav>
+    <button class="hamburger" id="sidebarHamburger" aria-label="Open sidebar" aria-expanded="false" aria-controls="appSidebar"><span></span><span></span><span></span></button><span class="admin-badge">Admin</span><div class="avatar" style="background:var(--error-bg);border-color:var(--error);color:var(--error)">AD</div></nav>
 </nav>
 <div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Platform Metrics</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Open</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Freelancers</span><span class="ticker-item"><span class="ticker-dot"></span>Platform Metrics</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Open</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Freelancers</span></div></div>
 <div class="app-layout">
   <aside class="sidebar">
+    <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close sidebar">✕</button>
     <ul class="sidebar-menu">
-      <li><a href="admin-dashboard.html">Overview</a></li>
-      <li><a href="admin-users.html">Users</a></li>
-      <li><a href="admin-tasks.html">All Tasks</a></li>
-      <li><a href="admin-disputes.html">Disputes</a></li>
-      <li><a href="admin-transactions.html">Transactions</a></li>
-      <li><a href="admin-reports.html" class="active">Reports</a></li>
-      <li><a href="admin-settings.html">Settings</a></li>
+      <li><a href="admin-dashboard.html" ><span class="s-icon">📊</span>Dashboard</a></li>
+      <li><a href="admin-users.html" ><span class="s-icon">👥</span>Users</a></li>
+      <li><a href="admin-tasks.html" ><span class="s-icon">📋</span>Tasks</a></li>
+      <li><a href="admin-disputes.html" ><span class="s-icon">⚖️</span>Disputes</a></li>
+      <li><a href="admin-transactions.html" ><span class="s-icon">💳</span>Transactions</a></li>
+      <li><a href="admin-reports.html" class="active"><span class="s-icon">📈</span>Reports</a></li>
+      <li><a href="admin-settings.html" ><span class="s-icon">⚙️</span>Settings</a></li>
     </ul>
   </aside>
   <main class="main-content">

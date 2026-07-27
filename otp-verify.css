@@ -18,3 +18,13 @@
 }
 .otp-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
 .forgot-link { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+/* ─── OTP VERIFY RESPONSIVE ─── */
+@media (max-width: 480px) {
+  .otp-wrap { padding: 1.5rem 1rem; }
+  .otp-inputs { gap: 8px; }
+  .otp-input { width: 44px !important; height: 52px !important; font-size: 1.4rem; }
+}
+@media (max-width: 360px) {
+  .otp-input { width: 30px !important; height: 40px !important; font-size: 1.2rem; }
+}

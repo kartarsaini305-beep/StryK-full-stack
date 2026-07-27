@@ -1,0 +1,838 @@
+/* ═══════════════════════════════════════════════════════════════════
+   StryK — Complete Responsive & Mobile-First Enhancement Layer
+   Covers all pages, all breakpoints: 320px → ultrawide
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── GLOBAL OVERFLOW FIX ────────────────── */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ─── SPACING SYSTEM TOKENS ──────────────── */
+:root {
+  --sp-xs: 0.5rem;
+  --sp-sm: 0.75rem;
+  --sp-md: 1rem;
+  --sp-lg: 1.5rem;
+  --sp-xl: 2rem;
+  --sp-2xl: 3rem;
+
+  /* Touch target baseline */
+  --touch-min: 44px;
+
+  /* Safe sidebar width on small screens */
+  --sidebar-w: 240px;
+  --sidebar-w-mobile: 280px;
+}
+
+/* ─── BASE TOUCH / INTERACTION ───────────── */
+a, button, .btn, [onclick], [role="button"] {
+  min-height: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+}
+/* Exceptions: inline spans, badges, small bits */
+.badge, .ticker-item, .ticker-dot, .prebeta-btn,
+.section-label, .stat-label, .stat-sub, .form-label,
+.form-hint, .form-error, .level-tag, .level-bar,
+.level-bar-fill, .hstat-label, .step-num, .cat-num {
+  min-height: unset;
+  display: revert;
+}
+/* Nav links specifically */
+.navbar nav a.btn {
+  min-height: var(--touch-min);
+}
+
+/* ─── NAVBAR — MOBILE HAMBURGER ──────────── */
+/* Desktop: all links shown, no hamburger */
+.nav-hamburger { display: none; }
+
+/* The public navbar (index, login, etc.) */
+.navbar {
+  padding: 0 var(--sp-xl);
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+.navbar > nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ─── TICKER RESPONSIVE ──────────────────── */
+.ticker-wrap {
+  overflow: hidden;
+}
+
+/* ─── SIDEBAR — ALREADY HANDLED IN global.css
+      Enhancement: better z-index stack + close button ─── */
+.sidebar-close-btn {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 91;
+}
+
+/* ─── STAT GRID — FLUID ──────────────────── */
+.stat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+/* ─── TABLES — MOBILE SAFE ───────────────── */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+.table-wrap table {
+  min-width: 560px;
+}
+
+/* ─── FORM ENHANCEMENTS ───────────────────── */
+.form-input, .form-select, .form-textarea {
+  font-size: 16px; /* prevents iOS zoom */
+  min-height: var(--touch-min);
+  padding: 12px 14px;
+}
+.form-textarea {
+  min-height: 100px;
+}
+
+/* ─── BUTTON SIZING ───────────────────────── */
+.btn {
+  padding: 10px 18px;
+  min-height: var(--touch-min);
+  white-space: nowrap;
+}
+.btn-sm {
+  padding: 8px 14px;
+  min-height: 36px;
+  font-size: 13px;
+}
+.btn-lg {
+  padding: 14px 28px;
+  min-height: 50px;
+  font-size: 15px;
+}
+
+/* ─── CARD BASE ENHANCEMENTS ─────────────── */
+.card {
+  border-radius: var(--radius-lg);
+}
+
+/* ─── ADMIN GRID RESPONSIVE ──────────────── */
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* ─── BALANCE CARD (wallet) ──────────────── */
+.balance-card {
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+/* ─── DISPUTE / TASK ROW ─────────────────── */
+.dispute-row {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ─── PAGE BODY SPACING ───────────────────── */
+.page-body {
+  padding-top: calc(var(--nav-h) + var(--ticker-h) + 1.5rem);
+  padding-left: var(--sp-xl);
+  padding-right: var(--sp-xl);
+}
+
+/* ─── AUTH PAGES ──────────────────────────── */
+.auth-page {
+  padding: var(--sp-xl) var(--sp-md);
+}
+.auth-card {
+  padding: 2rem var(--sp-xl);
+}
+
+/* ═══════════════════════════════════════════
+   BREAKPOINT: ≤ 1024px (Tablet landscape)
+   ═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .page-body {
+    padding-left: var(--sp-lg);
+    padding-right: var(--sp-lg);
+  }
+  .section {
+    padding: 3.5rem var(--sp-xl);
+  }
+  .categories-grid,
+  .levels-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .client-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   BREAKPOINT: ≤ 860px (Tablet portrait)
+   ═══════════════════════════════════════════ */
+@media (max-width: 860px) {
+  /* Hamburger visible for sidebar pages */
+  .hamburger { display: flex !important; }
+
+  /* Sidebar nav links hide on public pages */
+  .navbar > nav > a:not(.btn) {
+    display: none;
+  }
+
+  /* Show nav-hamburger (public navbar mobile menu) */
+  .nav-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    padding: 4px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--text-2);
+    border-radius: 2px;
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    margin: 0 auto;
+  }
+  .nav-hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    background: var(--text-1);
+  }
+  .nav-hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .nav-hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+    background: var(--text-1);
+  }
+
+  /* Mobile nav dropdown */
+  .mobile-nav-menu {
+    display: none;
+    position: fixed;
+    top: calc(var(--nav-h) + var(--ticker-h));
+    left: 0;
+    right: 0;
+    background: rgba(8,8,8,0.97);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    z-index: 98;
+    padding: 1rem;
+    flex-direction: column;
+    gap: 4px;
+    animation: slideDown 0.25s cubic-bezier(0.22,1,0.36,1);
+  }
+  .mobile-nav-menu.open {
+    display: flex;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .mobile-nav-menu a {
+    display: flex;
+    align-items: center;
+    min-height: var(--touch-min);
+    padding: 10px 14px;
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    transition: all 0.15s;
+  }
+  .mobile-nav-menu a:hover { color: var(--text-1); background: var(--card); }
+  .mobile-nav-menu a.btn {
+    justify-content: center;
+    margin-top: 4px;
+  }
+
+  /* Stat grid: 2-column on tablet */
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+  .grid-2, .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .main-content {
+    padding: 1.25rem 1rem;
+  }
+  .page-body {
+    padding: calc(var(--nav-h) + var(--ticker-h) + 1.25rem) 1rem 2rem;
+  }
+
+  /* Pre-beta section breathing room */
+  .hero-badge,
+  .prebeta-btn {
+    margin-top: 0.5rem;
+  }
+  .hero {
+    padding-top: calc(var(--nav-h) + var(--ticker-h) + 3rem);
+    padding-bottom: 3rem;
+  }
+
+  /* Steps layout */
+  .steps-row {
+    grid-template-columns: 1fr !important;
+  }
+  .step-arrow { display: none !important; }
+
+  /* Categories & levels */
+  .categories-grid,
+  .levels-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .client-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Footer */
+  .footer {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  .footer > div {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Hero stats stacked */
+  .hero-stats {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+  .hstat-div { width: 60px; height: 1px; }
+
+  /* Task row on mobile: stack info */
+  .task-row {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 1rem;
+  }
+  .task-info {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+  }
+  .task-pay {
+    margin-left: auto;
+  }
+
+  /* Balance card */
+  .balance-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+  .bc-amount { font-size: 2.2rem; }
+
+  /* Filters bar */
+  .filters-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .filter-cats {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    flex-wrap: nowrap;
+  }
+  .fcat-btn {
+    flex-shrink: 0;
+  }
+
+  /* Auth card */
+  .auth-card {
+    padding: 1.75rem 1.25rem;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Sidebar close button shown on mobile */
+  .sidebar-close-btn { display: flex; }
+}
+
+/* ═══════════════════════════════════════════
+   BREAKPOINT: ≤ 640px (Mobile)
+   ═══════════════════════════════════════════ */
+@media (max-width: 640px) {
+  :root {
+    --nav-h: 56px;
+    --ticker-h: 32px;
+  }
+
+  /* Hide ticker on very small screens to save vertical space? No — keep it.
+     Just ensure it doesn't cause overflow. */
+  .ticker-item {
+    font-size: 10px;
+    padding: 0 16px;
+  }
+
+  /* Navbar compact */
+  .navbar {
+    padding: 0 1rem;
+    gap: 0.75rem;
+  }
+  .navbar .logo img { height: 28px; }
+  .navbar .logo-text { font-size: 1.3rem; }
+
+  /* No horizontal scroll anywhere */
+  .section { padding: 2.5rem 1rem; }
+  .section-full { padding: 2.5rem 1rem; }
+  .main-content { padding: 1rem; }
+  .page-body { padding: calc(var(--nav-h) + var(--ticker-h) + 1rem) 1rem 2rem; }
+
+  /* Hero adjustments */
+  .hero { padding: calc(var(--nav-h) + var(--ticker-h) + 2.5rem) 1rem 2rem; }
+  .hero-title { font-size: clamp(2.2rem, 10vw, 3.5rem); letter-spacing: -1px; }
+  .hero-sub { font-size: 1rem; }
+  .hero-cta { flex-direction: column; align-items: stretch; gap: 10px; }
+  .btn-cta-primary, .btn-cta-ghost {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+  }
+  .hero-stats { gap: 0.5rem; }
+  .hstat-val { font-size: 1.4rem; }
+
+  /* Categories: 2-up on mobile */
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .cat-card { padding: 1.25rem 1rem; }
+  .cat-card span { font-size: 0.9rem; }
+
+  /* Levels: 2-up on mobile */
+  .levels-grid { grid-template-columns: repeat(2, 1fr); }
+  .level-card { padding: 1.25rem 1rem; }
+  .level-name { font-size: 1.3rem; }
+
+  /* Section title */
+  .section-title { font-size: clamp(1.5rem, 6vw, 2.2rem); margin-bottom: 1.5rem; }
+  .cta-title { font-size: clamp(2.5rem, 10vw, 4rem); letter-spacing: -1px; }
+
+  /* Stat grid: 2-col enforced */
+  .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .stat-value { font-size: 1.3rem; }
+
+  /* Cards — full-width padding */
+  .card { padding: 1rem; }
+  .stat-card { padding: 1rem; }
+
+  /* Auth — full width card */
+  .auth-card { padding: 1.5rem 1rem; max-width: 100%; }
+  .auth-header h1 { font-size: 1.5rem; }
+
+  /* Admin login numpad */
+  .numpad-btn { padding: 12px; font-size: 1rem; }
+
+  /* Table: ensure scrollable */
+  .table-wrap { margin: 0 -1rem; border-radius: 0; border-left: none; border-right: none; }
+  .table-wrap table { min-width: 500px; }
+
+  /* Form inputs */
+  .form-input, .form-select { font-size: 16px; }
+
+  /* Buttons: full width on very narrow */
+  .btn-full-xs { width: 100%; justify-content: center; }
+
+  /* Page headers */
+  .page-header { margin-bottom: 1.25rem; }
+  .page-header h1 { font-size: 1.3rem; }
+
+  /* flex-between stacks on mobile */
+  .flex-between-xs {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 1.25rem 1rem;
+    font-size: 12px;
+  }
+
+  /* Dashboard header row */
+  .dash-header-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem;
+  }
+  .dash-header-row .btn { width: 100%; justify-content: center; }
+
+  /* Browse tasks search/filters */
+  .filters-bar { gap: 0.5rem; }
+  .tasks-grid { grid-template-columns: 1fr; }
+
+  /* Wallet */
+  .balance-card { padding: 1.25rem; }
+  .bc-amount { font-size: 2rem; }
+
+  /* Dispute rows */
+  .dispute-row { align-items: flex-start; }
+  .dispute-row .btn { margin-top: 4px; }
+
+  /* Profile cards */
+  .profile-header { flex-direction: column; gap: 1rem; }
+
+  /* Tab bars */
+  .tab-bar, .rtab-bar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+    flex-wrap: nowrap;
+  }
+  .tab-btn, .rtab {
+    flex-shrink: 0;
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  /* OTP verification */
+  .otp-inputs { gap: 8px; }
+  .otp-input { width: 44px !important; height: 52px !important; font-size: 1.4rem; }
+
+  /* Clarity window */
+  .clarity-timer { font-size: 2.5rem; }
+}
+
+/* ═══════════════════════════════════════════
+   BREAKPOINT: ≤ 390px (Small mobile)
+   ═══════════════════════════════════════════ */
+@media (max-width: 390px) {
+  .hero-title { font-size: clamp(2rem, 11vw, 2.8rem); }
+  .cta-title { font-size: clamp(2rem, 12vw, 3rem); }
+  .stat-value { font-size: 1.2rem; }
+  .stat-card { padding: 0.875rem 0.75rem; }
+  .btn-cta-primary, .btn-cta-ghost { font-size: 0.9rem; padding: 13px 16px; }
+  .card { padding: 0.875rem; }
+  .level-name { font-size: 1.1rem; }
+  .cat-card span { font-size: 0.8rem; }
+  .cat-num { font-size: 0.85rem; }
+
+  /* Stat grid: still 2-col but smaller */
+  .stat-grid { gap: 0.5rem; }
+  .hstat-val { font-size: 1.2rem; }
+
+  /* Navbar */
+  .navbar { padding: 0 0.75rem; gap: 0.5rem; }
+
+  /* OTP small */
+  .otp-input { width: 40px !important; height: 48px !important; }
+}
+
+/* ═══════════════════════════════════════════
+   BREAKPOINT: ≤ 320px (Extra small)
+   ═══════════════════════════════════════════ */
+@media (max-width: 320px) {
+  :root { --nav-h: 52px; --ticker-h: 28px; }
+  .hero-title { font-size: 1.9rem; }
+  .cta-title { font-size: 2rem; }
+  .stat-grid { grid-template-columns: 1fr !important; }
+  .levels-grid, .categories-grid { grid-template-columns: 1fr !important; }
+  .otp-input { width: 36px !important; height: 44px !important; font-size: 1.2rem; }
+  .numpad-btn { padding: 10px 6px; font-size: 0.9rem; }
+}
+
+/* ═══════════════════════════════════════════
+   BREAKPOINT: ≥ 1440px (Wide desktop)
+   ═══════════════════════════════════════════ */
+@media (min-width: 1440px) {
+  .section { max-width: 1200px; }
+  .stat-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .main-content { padding: 2.5rem 3rem; }
+  .page-body { padding-left: 3rem; padding-right: 3rem; }
+}
+
+/* ═══════════════════════════════════════════
+   BREAKPOINT: ≥ 1920px (Ultrawide)
+   ═══════════════════════════════════════════ */
+@media (min-width: 1920px) {
+  .section { max-width: 1400px; }
+  body { font-size: 15px; }
+  .stat-value { font-size: 1.8rem; }
+}
+
+/* ─── PRE-BETA HERO SECTION BREATHING ROOM ── */
+/* The hero badge / pre-beta pill on mobile */
+@media (max-width: 860px) {
+  .hero-content {
+    padding-top: 1.5rem;
+  }
+  .hero-badge {
+    margin-bottom: 1.5rem;
+  }
+  .prebeta-section {
+    padding-top: calc(var(--nav-h) + var(--ticker-h) + 2rem);
+  }
+}
+
+/* ─── TYPOGRAPHY CLAMP OVERRIDES ─────────── */
+.page-header h1 {
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+h1, h2, h3, h4 {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+p, span, a {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* ─── ADMIN SUB-PAGE TABLES ──────────────── */
+@media (max-width: 640px) {
+  .users-table-wrap,
+  .tasks-table-wrap,
+  .txn-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -1rem;
+  }
+  .users-table-wrap table,
+  .tasks-table-wrap table,
+  .txn-table-wrap table {
+    min-width: 480px;
+  }
+}
+
+/* ─── SIDEBAR ENHANCEMENTS ────────────────── */
+.sidebar {
+  -webkit-overflow-scrolling: touch;
+}
+/* Smooth sidebar open/close */
+.sidebar {
+  will-change: transform;
+}
+/* Add bottom padding so last menu item isn't cut off by phone chrome */
+.sidebar-menu {
+  padding-bottom: 4rem;
+}
+
+/* ─── APP LAYOUT MOBILE ──────────────────── */
+@media (max-width: 860px) {
+  .app-layout {
+    flex-direction: column;
+  }
+  .main-content {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* ─── DISPUTES / RATINGS PAGES ───────────── */
+@media (max-width: 640px) {
+  .outcome-options {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .outcome-opt {
+    width: 100%;
+  }
+  .rate-row {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+/* ─── TASK DETAIL ─────────────────────────── */
+@media (max-width: 640px) {
+  .task-detail-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .task-meta-bar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+/* ─── POST TASK ───────────────────────────── */
+@media (max-width: 640px) {
+  .post-task-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .deadline-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* ─── NOTIFICATIONS ───────────────────────── */
+@media (max-width: 640px) {
+  .notif-item {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.875rem 1rem;
+  }
+  .notif-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* ─── IMPROVED FOCUS STATES ──────────────── */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+button:focus-visible, a:focus-visible {
+  outline-offset: 3px;
+}
+
+/* ─── IMPROVED COLOR CONTRAST ────────────── */
+.text-muted { color: var(--text-2); }
+.form-hint { color: #777; }
+.form-label { color: #b0b0b0; }
+
+/* ─── SMOOTH TRANSITIONS ─────────────────── */
+.sidebar, .mobile-nav-menu, .hamburger span {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── PREVENT OVERFLOW ON FLEX CHILDREN ──── */
+.flex-between > * { min-width: 0; }
+.flex-center > * { min-width: 0; }
+nav { min-width: 0; }
+
+/* ─── IMAGES RESPONSIVE ──────────────────── */
+img { max-width: 100%; height: auto; }
+
+/* ─── MODAL RESPONSIVE ───────────────────── */
+.modal-overlay { padding: 1rem; }
+.modal-box {
+  max-width: min(420px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+}
+
+/* ─── ADMIN LOGIN NUMPAD ─────────────────── */
+@media (max-width: 480px) {
+  .admin-gate-card {
+    padding: 1.75rem 1.25rem;
+  }
+  .numpad { gap: 8px; }
+}
+
+/* ─── HORIZONTAL SCROLL PREVENTION ──────── */
+/* Catch-all for any element that could cause horizontal scroll */
+.categories-grid,
+.levels-grid,
+.client-grid,
+.steps-row,
+.admin-grid,
+.stat-grid,
+.tasks-grid,
+.hero-cta,
+.hero-stats {
+  max-width: 100%;
+}
+
+
+/* ═══════════════════════════════════════════
+   CRITICAL FIX — MOBILE NAV MENU BASE STYLES
+   Must be OUTSIDE any @media query so the
+   display:none baseline always applies.
+   ═══════════════════════════════════════════ */
+
+/* Base: always hidden unless .open */
+.mobile-nav-menu {
+  display: none;
+  position: fixed;
+  top: calc(var(--nav-h) + var(--ticker-h));
+  left: 0;
+  right: 0;
+  background: rgba(8,8,8,0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 101; /* above ticker (99) and navbar (100) */
+  padding: 0.75rem 1rem 1.25rem;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.mobile-nav-menu.open {
+  display: flex;
+  animation: mobileNavSlide 0.25s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes mobileNavSlide {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mobile-nav-menu a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 14px;
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s, background 0.15s;
+}
+.mobile-nav-menu a:hover,
+.mobile-nav-menu a:focus { color: var(--text-1); background: var(--card); outline: none; }
+.mobile-nav-menu .mobile-nav-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 6px 14px;
+}
+.mobile-nav-menu a.btn {
+  justify-content: center;
+  margin-top: 4px;
+  min-height: 44px;
+}
+/* On desktop: hamburger hidden, menu never shows */
+@media (min-width: 861px) {
+  .nav-hamburger { display: none !important; }
+  .mobile-nav-menu,
+  .mobile-nav-menu.open { display: none !important; }
+}

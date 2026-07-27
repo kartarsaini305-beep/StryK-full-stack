@@ -10,3 +10,10 @@
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 200; padding: 1rem; }
 .modal-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 2rem; width: 100%; max-width: 480px; }
 @media(max-width:900px) { .review-layout { grid-template-columns: 1fr; } .action-panel { position: static; } }
+
+/* ─── TASK REVIEW RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .review-card { padding: 1.25rem 1rem; }
+  .review-actions { flex-direction: column; gap: 0.75rem; }
+  .review-actions .btn { width: 100%; justify-content: center; }
+}

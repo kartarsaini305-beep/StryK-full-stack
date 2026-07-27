@@ -5,6 +5,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard — StryK Freelancer</title>
 <link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="responsive.css">
 <link rel="stylesheet" href="preloader.css">
 <link rel="stylesheet" href="freelancer-dashboard.css">
 </head>
@@ -15,6 +16,7 @@
 <nav class="navbar">
   <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
   <nav>
+    <button class="hamburger" id="sidebarHamburger" aria-label="Open sidebar" aria-expanded="false" aria-controls="appSidebar"><span></span><span></span><span></span></button>
     <span class="level-badge"> Level 1 — Beginner</span>
     <div class="avatar" style="cursor:pointer">KS</div>
   </nav>
@@ -22,18 +24,19 @@
 </nav>
 <div class="app-layout">
   <aside class="sidebar">
+    <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close sidebar">✕</button>
     <ul class="sidebar-menu">
-      <li><a href="freelancer-dashboard.html" class="active"> Dashboard</a></li>
-      <li><a href="browse-tasks.html"> Browse Tasks</a></li>
-      <li><a href="my-tasks.html"> My Tasks</a></li>
-      <li><a href="wallet.html"> Wallet</a></li>
-      <li><a href="ratings.html"> Ratings</a></li>
-      <li><a href="disputes.html"> Disputes</a></li>
-      <li><a href="profile.html"> Profile</a></li>
+      <li><a href="freelancer-dashboard.html" class="active"><span class="s-icon">🏠</span>Dashboard</a></li>
+      <li><a href="browse-tasks.html" ><span class="s-icon">🔍</span>Browse Tasks</a></li>
+      <li><a href="my-tasks.html" ><span class="s-icon">📋</span>My Tasks</a></li>
+      <li><a href="wallet.html" ><span class="s-icon">💰</span>Wallet</a></li>
+      <li><a href="ratings.html" ><span class="s-icon">⭐</span>Ratings</a></li>
+      <li><a href="disputes.html" ><span class="s-icon">⚖️</span>Disputes</a></li>
+      <li><a href="profile.html" ><span class="s-icon">👤</span>Profile</a></li>
     </ul>
   </aside>
   <main class="main-content">
-    <div class="flex-between mb-3">
+    <div class="flex-between mb-3 dash-header-row">
       <div>
         <h1 class="font-head" style="font-size:1.6rem;font-weight:700">Good morning, Kartar </h1>
         <p class="text-muted text-sm">Here's what's happening today</p>

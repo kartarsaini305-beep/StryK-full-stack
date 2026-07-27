@@ -15,3 +15,10 @@
 }
 .ti-row { display: flex; justify-content: space-between; padding: 5px 0; }
 @media(max-width:768px) { .submit-layout { flex-direction: column; } .submit-layout > div { width: 100% !important; } }
+
+/* ─── SUBMIT WORK RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .submit-form { padding: 1.25rem 1rem; }
+  .file-upload-zone { padding: 1.5rem 1rem; }
+  .fu-icon { font-size: 2rem; }
+}

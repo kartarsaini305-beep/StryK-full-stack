@@ -1,6 +1,5 @@
+// StryK — Preloader (Fixed: no stuck preloading class, guaranteed dismiss)
 (function () {
-  // index.html = dramatic first-visit animation (2s)
-  // all other pages = quick logo flash (0.8s)
   var isIndex = window.location.pathname === '/' ||
                 window.location.pathname.endsWith('index.html') ||
                 window.location.pathname.endsWith('/');
@@ -20,14 +19,23 @@
   document.body.classList.add('preloading');
   document.body.insertBefore(pl, document.body.firstChild);
 
+  var dismissed = false;
+
   function dismiss() {
+    if (dismissed) return;
+    dismissed = true;
     pl.classList.add('exit');
     document.body.classList.remove('preloading');
     document.body.classList.add('page-ready');
-    setTimeout(function () { pl.style.display = 'none'; }, 600);
+    // Force opacity visible immediately as fallback
+    document.body.style.opacity = '';
+    setTimeout(function () {
+      pl.style.display = 'none';
+      pl.remove();
+    }, 600);
   }
 
-  var minTime = isIndex ? 1900 : 700;
+  var minTime = isIndex ? 1900 : 500; // faster on inner pages: 500ms max
   var start = Date.now();
 
   window.addEventListener('load', function () {
@@ -35,5 +43,14 @@
     setTimeout(dismiss, Math.max(0, minTime - elapsed));
   });
 
-  setTimeout(dismiss, isIndex ? 3200 : 1400);
+  // Hard fallback: ALWAYS dismiss — never leave page stuck
+  setTimeout(dismiss, isIndex ? 3000 : 1200);
+
+  // Extra safety: if DOMContentLoaded fires and we're an inner page, dismiss fast
+  if (!isIndex) {
+    document.addEventListener('DOMContentLoaded', function() {
+      var elapsed = Date.now() - start;
+      setTimeout(dismiss, Math.max(0, 400 - elapsed));
+    });
+  }
 })();

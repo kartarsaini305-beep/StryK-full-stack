@@ -1,57 +1,64 @@
-// Shared sidebar hamburger for all inner pages
+// StryK Sidebar — clean, no body.overflow, no dynamic injection
 (function () {
+  'use strict';
+
   document.addEventListener('DOMContentLoaded', function () {
     var sidebar = document.querySelector('.sidebar');
-    if (!sidebar) return;
+    var burger  = document.getElementById('sidebarHamburger');
+    var closeBtn = document.getElementById('sidebarCloseBtn');
+    if (!sidebar || !burger) return;
 
-    // Create overlay
+    sidebar.id = 'appSidebar';
+
+    // Create overlay via JS (lightweight)
     var overlay = document.createElement('div');
     overlay.className = 'sidebar-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
     document.body.appendChild(overlay);
-
-    // Create hamburger button and inject into navbar
-    var navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-
-    var burger = document.createElement('button');
-    burger.className = 'hamburger';
-    burger.setAttribute('aria-label', 'Toggle menu');
-    burger.innerHTML = '<span></span><span></span><span></span>';
-
-    // Insert hamburger as first child of navbar nav, or after logo
-    var navRight = navbar.querySelector('nav');
-    if (navRight) {
-      navRight.insertBefore(burger, navRight.firstChild);
-    } else {
-      navbar.appendChild(burger);
-    }
 
     function openSidebar() {
       sidebar.classList.add('open');
       overlay.classList.add('visible');
       burger.classList.add('open');
-      document.body.style.overflow = 'hidden';
+      burger.setAttribute('aria-expanded', 'true');
+      // NO body overflow:hidden — causes stuck scroll bug
     }
 
     function closeSidebar() {
       sidebar.classList.remove('open');
       overlay.classList.remove('visible');
       burger.classList.remove('open');
-      document.body.style.overflow = '';
+      burger.setAttribute('aria-expanded', 'false');
+      // NO body overflow reset needed
     }
 
-    burger.addEventListener('click', function () {
+    burger.addEventListener('click', function (e) {
+      e.stopPropagation();
       sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
     });
 
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        closeSidebar();
+      });
+    }
+
     overlay.addEventListener('click', closeSidebar);
 
-    // Close on nav link click (mobile)
+    // Close sidebar links on mobile
     sidebar.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', closeSidebar);
+      link.addEventListener('click', function () {
+        if (window.innerWidth <= 860) closeSidebar();
+      });
     });
 
-    // Close on resize back to desktop
+    // Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeSidebar();
+    });
+
+    // Auto-close on desktop resize
     window.addEventListener('resize', function () {
       if (window.innerWidth > 860) closeSidebar();
     });

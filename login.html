@@ -6,14 +6,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login — StryK</title>
 <link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="responsive.css">
 <link rel="stylesheet" href="preloader.css">
 <link rel="stylesheet" href="login.css">
 </head>
 <body>
 <script src="preloader.js"></script>
-<nav class="navbar">
-  <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="mainNav">
+  <a href="index.html" class="logo">
+    <img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+    <span class="logo-text" style="display:none">Str<span>y</span>K</span>
+  </a>
+  <nav>
+    <a href="how-it-works.html">How it works</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 </nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="mobile-nav-menu" id="mobileNavMenu" role="navigation" aria-label="Mobile navigation">
+  <a href="how-it-works.html">How it works</a>
+  <a href="pricing.html">Pricing</a>
+  <div class="mobile-nav-divider"></div>
+  <a href="login.html" class="btn btn-ghost btn-sm">Login</a>
+  <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+</div>
+
 <div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>Freelancers</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>Freelancers</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission 6 Months</span></div></div>
 
 <main class="page-body auth-page">
@@ -23,10 +47,10 @@
       <p>Login to your StryK account</p>
     </div>
 
-    <!-- Role selector -->
+    <!-- Role Selector — FIXED: simple "Freelancer" / "Client" labels -->
     <div class="role-toggle-wrap">
       <button class="role-toggle active" id="btn-fl" onclick="selectRole('freelancer')">Freelancer</button>
-      <button class="role-toggle" id="btn-cl" onclick="selectRole('client')">Client / Brand</button>
+      <button class="role-toggle" id="btn-cl" onclick="selectRole('client')">Client</button>
     </div>
 
     <form class="auth-form" onsubmit="return false">
@@ -67,22 +91,24 @@
 }
 .role-toggle {
   flex: 1;
-  padding: 9px;
+  padding: 10px;
   border: none;
   border-radius: calc(var(--radius) - 2px);
   background: transparent;
   color: var(--text-2);
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.18s;
+  min-height: 40px;
 }
 .role-toggle.active {
   background: var(--card);
   color: var(--text-1);
   box-shadow: 0 1px 6px rgba(0,0,0,0.3);
 }
+.role-toggle:hover:not(.active) { color: var(--text-1); }
 </style>
 
 <script>
@@ -107,5 +133,6 @@ function handleLogin() {
 }
 </script>
 <script src="animations.js"></script>
+<script src="mobile-nav.js"></script>
 </body>
 </html>

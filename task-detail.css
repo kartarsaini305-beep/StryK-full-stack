@@ -24,3 +24,13 @@
   .detail-meta-row { grid-template-columns: repeat(2,1fr); }
   .book-panel { position: static; }
 }
+
+/* ─── TASK DETAIL RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .task-detail-header { flex-wrap: wrap; gap: 0.75rem; }
+  .task-detail-meta { flex-wrap: wrap; gap: 0.5rem; }
+  .task-detail-grid { grid-template-columns: 1fr !important; }
+  .td-sidebar { order: -1; }
+  .bid-card { padding: 1rem; }
+  .bid-row { flex-wrap: wrap; gap: 0.5rem; }
+}

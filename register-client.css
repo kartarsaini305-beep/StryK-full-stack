@@ -401,3 +401,9 @@
     padding: 1.75rem;
   }
 }
+
+/* ─── REGISTER CLIENT RESPONSIVE ─── */
+@media (max-width: 480px) {
+  .auth-card, .register-card { padding: 1.5rem 1rem; }
+  .register-header h1 { font-size: 1.4rem; }
+}

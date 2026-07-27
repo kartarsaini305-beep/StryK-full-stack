@@ -12,3 +12,12 @@
 .ni-icon.level { background: rgba(167,139,250,0.1); }
 .ni-body { flex: 1; }
 .ni-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; }
+
+/* ─── NOTIFICATIONS RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .notif-item { padding: 0.875rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
+  .notif-icon { flex-shrink: 0; width: 36px; height: 36px; font-size: 14px; }
+  .notif-content { flex: 1 1 calc(100% - 50px); min-width: 0; }
+  .notif-time { font-size: 11px; }
+  .notif-actions { width: 100%; justify-content: flex-end; margin-top: 4px; }
+}

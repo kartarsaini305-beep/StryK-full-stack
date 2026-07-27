@@ -25,3 +25,11 @@
 .task-cat.data { background: rgba(52,211,153,0.15); color: #34d399; }
 .task-cat.video { background: rgba(248,113,113,0.15); color: #f87171; }
 .task-cat.dev { background: rgba(251,191,36,0.15); color: #fbbf24; }
+
+/* ─── BROWSE TASKS RESPONSIVE ──── */
+@media (max-width: 640px) {
+  .tasks-grid { grid-template-columns: 1fr; }
+  .task-card { padding: 1rem; }
+  .tc-title { font-size: 0.9rem; }
+  .tc-pay { font-size: 1rem; }
+}

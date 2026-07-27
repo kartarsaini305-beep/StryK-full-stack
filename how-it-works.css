@@ -21,3 +21,13 @@
 .hiw-cta { text-align: center; padding: 3rem 0; }
 .hiw-cta h2 { font-family: var(--font-head); font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; }
 .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* ─── HOW-IT-WORKS RESPONSIVE ───── */
+@media (max-width: 640px) {
+  .hiw-page { padding: 2rem 1rem; }
+  .hiw-hero h1 { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+  .ht-btn { padding: 10px 18px; font-size: 13px; }
+  .hiw-feature { flex-direction: column; gap: 1rem; padding: 1.25rem; }
+  .st-item { grid-template-columns: 44px 1fr; gap: 1rem; padding: 1.25rem 0; }
+  .st-num { font-size: 1.5rem; }
+}

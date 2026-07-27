@@ -118,8 +118,12 @@
 }
 
 /* ── Page visibility ── */
-body.preloading > *:not(#preloader) { opacity: 0; }
+/* Body children stay visible — #preloader overlay (z-index:9999) covers content during load */
 body.page-ready > *:not(#preloader) {
-  opacity: 1;
-  transition: opacity 0.35s ease;
+  /* no opacity change needed — preloader overlay handles masking */
+}
+
+/* ─── BODY ALWAYS VISIBLE — preloader overlay handles masking ─── */
+body {
+  opacity: 1 !important;
 }

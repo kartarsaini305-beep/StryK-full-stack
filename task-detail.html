@@ -5,6 +5,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Task Detail — StryK</title>
 <link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="responsive.css">
 <link rel="stylesheet" href="preloader.css">
 <link rel="stylesheet" href="task-detail.css">
 </head>
@@ -14,19 +15,21 @@
 <script src="preloader.js"></script>
 <nav class="navbar">
   <a href="index.html" class="logo"><img src="stryk_logo_tagline__1_.png" alt="StryK" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="logo-text" style="display:none">Str<span>y</span>K</span></a>
-  <nav><span class="level-badge"> Level 1</span><div class="avatar">KS</div></nav>
+  <nav>
+    <button class="hamburger" id="sidebarHamburger" aria-label="Open sidebar" aria-expanded="false" aria-controls="appSidebar"><span></span><span></span><span></span></button><span class="level-badge"> Level 1</span><div class="avatar">KS</div></nav>
 <div class="ticker-wrap"><div class="ticker-track"><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span><span class="ticker-item"><span class="ticker-dot"></span>Brands</span><span class="ticker-item"><span class="ticker-dot"></span>YouTubers</span><span class="ticker-item"><span class="ticker-dot"></span>College Students</span><span class="ticker-item"><span class="ticker-dot"></span>Creators</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Strike When You're Free</span><span class="ticker-item"><span class="ticker-dot"></span>Same Day Payment</span><span class="ticker-item"><span class="ticker-dot"></span>Instant Task Booking</span><span class="ticker-item"><span class="ticker-dot"></span>150+ Influencers Onboard</span><span class="ticker-item accent-item"><span class="ticker-dot"></span>Pre-Beta Access Open</span><span class="ticker-item"><span class="ticker-dot"></span>Zero Commission — 6 Months</span></div></div>
 </nav>
 <div class="app-layout">
   <aside class="sidebar">
+    <button class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close sidebar">✕</button>
     <ul class="sidebar-menu">
-      <li><a href="freelancer-dashboard.html"> Dashboard</a></li>
-      <li><a href="browse-tasks.html" class="active"> Browse Tasks</a></li>
-      <li><a href="my-tasks.html"> My Tasks</a></li>
-      <li><a href="wallet.html"> Wallet</a></li>
-      <li><a href="ratings.html"> Ratings</a></li>
-      <li><a href="disputes.html"> Disputes</a></li>
-      <li><a href="profile.html"> Profile</a></li>
+      <li><a href="freelancer-dashboard.html" ><span class="s-icon">🏠</span>Dashboard</a></li>
+      <li><a href="browse-tasks.html" class="active"><span class="s-icon">🔍</span>Browse Tasks</a></li>
+      <li><a href="my-tasks.html" ><span class="s-icon">📋</span>My Tasks</a></li>
+      <li><a href="wallet.html" ><span class="s-icon">💰</span>Wallet</a></li>
+      <li><a href="ratings.html" ><span class="s-icon">⭐</span>Ratings</a></li>
+      <li><a href="disputes.html" ><span class="s-icon">⚖️</span>Disputes</a></li>
+      <li><a href="profile.html" ><span class="s-icon">👤</span>Profile</a></li>
     </ul>
   </aside>
   <main class="main-content">

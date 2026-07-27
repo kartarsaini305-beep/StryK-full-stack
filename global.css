@@ -389,10 +389,10 @@ tbody tr:last-child td { border-bottom: none; }
   to   { opacity: 1; transform: translateY(0); }
 }
 .main-content {
-  animation: pageEnter 0.35s ease both;
+  /* no entrance animation — preloader handles page entry */
 }
 .page-body {
-  animation: pageEnter 0.4s ease both;
+  /* no entrance animation */
 }
 
 /* Stat card count up effect */
@@ -400,14 +400,7 @@ tbody tr:last-child td { border-bottom: none; }
   from { opacity: 0; transform: scale(0.9); }
   to   { opacity: 1; transform: scale(1); }
 }
-.stat-card {
-  animation: statReveal 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.stat-grid .stat-card:nth-child(1) { animation-delay: 0.05s; }
-.stat-grid .stat-card:nth-child(2) { animation-delay: 0.10s; }
-.stat-grid .stat-card:nth-child(3) { animation-delay: 0.15s; }
-.stat-grid .stat-card:nth-child(4) { animation-delay: 0.20s; }
-.stat-grid .stat-card:nth-child(5) { animation-delay: 0.25s; }
+/* stat-card animations removed — caused blur during preloader exit */
 .stat-grid .stat-card:nth-child(6) { animation-delay: 0.30s; }
 
 /* ─── PRE-BETA NAVBAR BUTTON ─────────────── */
@@ -727,3 +720,123 @@ a[href="admin-login.html"]:hover {
 .admin-page-title {
   color: #EF4444;
 }
+
+/* ─── SIDEBAR CLOSE BUTTON ─────────────────── */
+.sidebar-close-btn {
+  display: none;
+  position: absolute;
+  top: calc(var(--nav-h) + var(--ticker-h) + 0.75rem);
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 91;
+  transition: all 0.15s;
+  flex-shrink: 0;
+  min-height: unset;
+}
+.sidebar-close-btn:hover {
+  background: var(--card-hover);
+  color: var(--text-1);
+}
+
+@media (max-width: 860px) {
+  .sidebar-close-btn { display: flex; }
+}
+
+/* ─── IMPROVED NAV HAMBURGER BASE ────────── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  min-height: unset;
+  cursor: pointer;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text-2);
+  border-radius: 2px;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  margin: 0 auto;
+}
+
+/* ─── MOBILE NAV MENU BASE ───────────────── */
+.mobile-nav-menu {
+  display: none;
+  position: fixed;
+  top: calc(var(--nav-h) + var(--ticker-h));
+  left: 0;
+  right: 0;
+  background: rgba(8,8,8,0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 98;
+  padding: 0.75rem;
+  flex-direction: column;
+  gap: 4px;
+}
+.mobile-nav-menu.open { display: flex; }
+.mobile-nav-menu a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 14px;
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s;
+}
+.mobile-nav-menu a:hover,
+.mobile-nav-menu a:focus-visible {
+  color: var(--text-1);
+  background: var(--card);
+}
+.mobile-nav-menu a.btn {
+  justify-content: center;
+  margin-top: 4px;
+}
+
+/* ─── FIX: No horizontal scroll globally ─── */
+* { box-sizing: border-box; }
+img, video, iframe { max-width: 100%; }
+pre, code { overflow-x: auto; }
+
+
+/* ─── SIDEBAR ICON SPAN ─── */
+.s-icon {
+  font-size: 16px;
+  width: 22px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+@media (max-width: 860px){ .sidebar.open{display:block !important;} .sidebar{display:block !important;} }
